@@ -79,10 +79,12 @@ function renderStats() {
   const groups = aptData.apt_groups;
   const activeCount = groups.filter(g => g.active).length;
   const origins = new Set(groups.map(g => g.origin)).size;
+  const updated = aptData.metadata?.last_updated || 'Unknown';
   el.innerHTML = `
     <div class="stat-item"><div class="stat-value">${groups.length}</div><div class="stat-label">APT Groups</div></div>
     <div class="stat-item"><div class="stat-value">${activeCount}</div><div class="stat-label">Active</div></div>
     <div class="stat-item"><div class="stat-value">${origins}</div><div class="stat-label">Origins</div></div>
+    <div class="stat-item"><div class="stat-value" style="font-size:0.8rem">${updated}</div><div class="stat-label">Last Updated</div></div>
   `;
 }
 
