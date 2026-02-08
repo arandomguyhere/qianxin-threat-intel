@@ -670,7 +670,34 @@ def main():
     map_file = find_file("apt-dossier_map")
     map_origins = build_map_origin_index(map_file)
 
-    # ─── Step 2: Process actors ──────────────────────────
+    # ─── Step 2: Load per-actor detail files (from enhanced scraper) ──
+    actor_details = {}  # actorName → detail record
+    detail_files = sorted(glob.glob(os.path.join(DUMP_DIR, "actor_*.json")))
+    if detail_files:
+        print(f"[*] Found {len(detail_files)} actor detail files")
+        for fpath in detail_files:
+            try:
+                data = load_json(fpath)
+                payload = data.get("data", data) if isinstance(data, dict) else data
+                if isinstance(payload, dict):
+                    # Print first detail file structure for debugging
+                    if not actor_details:
+                        print(f"[*] First detail record keys: {list(payload.keys())}")
+                        for k, v in payload.items():
+                            vtype = type(v).__name__
+                            sample = str(v)[:100] if v is not None else "null"
+                            print(f"    {k} ({vtype}): {sample}")
+                    # Index by actorName or name
+                    aname = payload.get("actorName") or payload.get("name") or ""
+                    if aname and not is_object_id(str(aname)):
+                        actor_details[str(aname).lower().strip()] = payload
+            except Exception:
+                continue
+        print(f"[+] Loaded {len(actor_details)} actor detail records")
+    else:
+        print("[*] No actor detail files found (scraper may not have captured them)")
+
+    # ─── Step 3: Process actors ──────────────────────────
     all_groups = []
     seen_names = set()
 
@@ -682,12 +709,25 @@ def main():
         if records:
             print(f"[+] Extracted {len(records)} records from actor endpoint")
             for i, raw in enumerate(records):
+                # Merge detail data if available
+                aname = raw.get("actorName", "").lower().strip()
+                if aname in actor_details:
+                    detail = actor_details[aname]
+                    # Merge detail fields into raw (detail takes precedence for new fields)
+                    merged = dict(raw)
+                    for k, v in detail.items():
+                        if k not in merged or merged[k] is None or merged[k] == "":
+                            merged[k] = v
+                        elif k not in ("name", "actorName", "alias", "type"):
+                            merged[k] = v  # Detail has richer data
+                    raw = merged
+
                 group = normalize_actor(raw, map_origins, idx=i)
                 if group["name"] != "Unknown" and group["name"] not in seen_names:
                     seen_names.add(group["name"])
                     all_groups.append(group)
 
-    # ─── Step 3: Fallback - scan all dump files ──────────
+    # ─── Step 4: Fallback - scan all dump files ──────────
     if not all_groups:
         print("[*] Actor endpoint didn't yield groups, scanning all files...")
         count = 0
