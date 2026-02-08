@@ -1,5 +1,7 @@
 // ─── Config ─────────────────────────────────────────────
-const ORIGIN_COLORS = {
+// Origin colors are loaded dynamically from apt-groups.json origins data.
+// This provides a fallback for the initial load and any origins missing from data.
+const FALLBACK_ORIGIN_COLORS = {
   'Russia': '#e74c3c',
   'China': '#e67e22',
   'North Korea': '#a855f7',
@@ -7,14 +9,10 @@ const ORIGIN_COLORS = {
   'United States': '#3498db',
   'Vietnam': '#06b6d4',
   'India': '#f39c12',
-  'Pakistan': '#10b981',
-  'South Korea': '#6366f1',
-  'Israel': '#0ea5e9',
-  'Turkey': '#ec4899',
-  'Lebanon': '#84cc16',
-  'Palestine': '#84cc16',
-  'Gaza': '#84cc16'
+  'Unknown': '#888888'
 };
+
+let ORIGIN_COLORS = { ...FALLBACK_ORIGIN_COLORS };
 
 const THREAT_COLORS = {
   critical: '#ef4444',
@@ -22,27 +20,11 @@ const THREAT_COLORS = {
   medium: '#eab308'
 };
 
-const COUNTRY_NAME_MAP = {
-  'Russia': 'Russia',
-  'China': 'China',
-  'North Korea': 'N. Korea',
-  'Iran': 'Iran',
-  'United States': 'United States of America',
-  'Vietnam': 'Vietnam',
-  'India': 'India',
-  'Pakistan': 'Pakistan',
-  'South Korea': 'Korea',
-  'Israel': 'Israel',
-  'Turkey': 'Turkey',
-  'Lebanon': 'Lebanon',
-  'Palestine': 'Palestine',
-  'Gaza': 'Gaza'
-};
-
 // Region centroids for drawing attack arcs
 const REGION_COORDS = {
   'North America': [-100, 45],
   'South America': [-60, -15],
+  'Latin America': [-70, -5],
   'Europe': [15, 50],
   'Middle East': [45, 28],
   'Central Asia': [65, 42],
@@ -51,13 +33,44 @@ const REGION_COORDS = {
   'South Asia': [78, 22],
   'Oceania': [135, -25],
   'Africa': [20, 5],
+  'North Africa': [15, 30],
   'Global': [0, 20],
   'Ukraine': [32, 49],
   'South Korea': [127, 36],
   'Japan': [138, 36],
   'Asia Pacific': [130, 15],
   'Americas': [-80, 20],
-  'United States': [-98, 38]
+  'United States': [-98, 38],
+  'Israel': [35, 31],
+  'Palestine': [35, 32],
+  'India': [78, 22],
+  'Pakistan': [69, 30],
+  'China': [104, 35],
+  'Bangladesh': [90, 24],
+  'Nepal': [84, 28],
+  'Sri Lanka': [81, 7],
+  'Iran': [52, 33],
+  'Saudi Arabia': [45, 24],
+  'Egypt': [31, 27],
+  'Taiwan': [121, 24],
+  'Hong Kong': [114, 22],
+  'Tibet': [91, 30],
+  'Afghanistan': [67, 33],
+  'Rwanda': [30, -2],
+  'Belgium': [4, 51],
+  'Germany': [10, 51],
+  'Lithuania': [24, 55],
+  'Latvia': [25, 57],
+  'Poland': [20, 52],
+  'Colombia': [-74, 4],
+  'Ecuador': [-78, -2],
+  'Chile': [-71, -35],
+  'Spain': [-4, 40],
+  'Venezuela': [-67, 8],
+  'Canada': [-106, 56],
+  'United Kingdom': [-2, 54],
+  'CIS countries': [60, 50],
+  'NATO countries': [10, 50]
 };
 
 const TOPO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
@@ -78,13 +91,52 @@ async function init() {
   const world = await worldRes.json();
   aptData = await aptRes.json();
 
+  // Load origin colors dynamically from data
+  loadOriginColors();
   renderStats();
+  renderFilterButtons();
   renderMap(world);
   renderLegend();
   renderSidebar();
   setupSearch();
   setupFilters();
   setupControls();
+}
+
+// Load origin colors from the data's origins section
+function loadOriginColors() {
+  if (aptData.origins) {
+    Object.entries(aptData.origins).forEach(([name, info]) => {
+      if (info.color) {
+        ORIGIN_COLORS[name] = info.color;
+      }
+    });
+  }
+}
+
+// Generate filter buttons dynamically from data origins
+function renderFilterButtons() {
+  const row = document.querySelector('.filter-row');
+  if (!row) return;
+
+  // Short display names for countries
+  const SHORT_NAMES = {
+    'North Korea': 'DPRK',
+    'United States': 'USA',
+    'United Arab Emirates': 'UAE',
+    'South Korea': 'S. Korea'
+  };
+
+  // Collect origins sorted by group count (descending), skip Unknown
+  const origins = Object.entries(aptData.origins || {})
+    .filter(([name]) => name !== 'Unknown')
+    .sort((a, b) => b[1].groups_count - a[1].groups_count);
+
+  row.innerHTML = '<button class="filter-btn active" data-filter="all">All</button>';
+  origins.forEach(([name, info]) => {
+    const label = SHORT_NAMES[name] || name;
+    row.innerHTML += `<button class="filter-btn" data-filter="${name}">${label}</button>`;
+  });
 }
 
 // ─── Stats ──────────────────────────────────────────────
