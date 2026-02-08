@@ -57,10 +57,16 @@ jobs:
         if: always()
         env:
           CHANGED: ${{ steps.diff.outputs.changed }}
+        shell: bash
         run: |
-          GROUPS=$(python -c "import json; d=json.load(open('docs/data/apt-groups.json')); print(d['metadata']['total_groups'])")
-          UPDATED=$(python -c "import json; d=json.load(open('docs/data/apt-groups.json')); print(d['metadata']['last_updated'])")
+          set +e
           if [ "$CHANGED" = "true" ]; then STATUS="Updated and committed"; else STATUS="No changes detected"; fi
+          GROUPS="N/A"
+          UPDATED="N/A"
+          if [ -f docs/data/apt-groups.json ]; then
+            GROUPS=$(python3 -c "import json; print(json.load(open('docs/data/apt-groups.json'))['metadata']['total_groups'])" 2>&1) || GROUPS="error"
+            UPDATED=$(python3 -c "import json; print(json.load(open('docs/data/apt-groups.json'))['metadata']['last_updated'])" 2>&1) || UPDATED="error"
+          fi
           echo "## APT Data Update" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "| | |" >> "$GITHUB_STEP_SUMMARY"
