@@ -4,27 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>APT Threat Map - QiAnxin Threat Intelligence</title>
-  <meta name="description" content="Interactive APT threat group map visualization based on QiAnxin Threat Intelligence data. Track advanced persistent threat groups worldwide.">
+  <meta name="description" content="Interactive APT threat group map visualization based on QiAnxin Threat Intelligence data.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://d3js.org/topojson.v3.min.js"></script>
 </head>
 <body>
 
   <!-- Header -->
   <header class="header">
     <div class="header-left">
-      <div class="logo">TI</div>
+      <div class="logo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+          <line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/>
+          <line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>
+        </svg>
+      </div>
       <div>
         <h1>APT Threat Intelligence Map</h1>
         <div class="header-subtitle">Data sourced from QiAnxin Threat Intelligence Center</div>
       </div>
     </div>
-    <div class="header-stats" id="stats">
-      <div class="loading"><div class="loading-spinner"></div></div>
-    </div>
+    <div class="header-stats" id="stats"></div>
   </header>
 
   <!-- Main Layout -->
@@ -32,21 +38,24 @@
 
     <!-- Map -->
     <section class="map-section">
-      <div class="map-container" id="world-map">
-        <div class="loading"><div class="loading-spinner"></div> Loading threat map...</div>
+      <div class="map-container" id="world-map"></div>
+      <div class="map-legend" id="map-legend"></div>
+      <div class="map-controls">
+        <button class="map-ctrl-btn" id="zoom-in" title="Zoom in">+</button>
+        <button class="map-ctrl-btn" id="zoom-out" title="Zoom out">&minus;</button>
+        <button class="map-ctrl-btn" id="zoom-reset" title="Reset view">&#8634;</button>
       </div>
-      <div class="map-overlay" id="map-legend"></div>
     </section>
 
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-header">
-        <input type="text" class="search-box" id="search-input" placeholder="Search APT groups, malware, targets...">
+        <input type="text" class="search-box" id="search-input" placeholder="Search groups, malware, targets...">
         <div class="filter-row">
           <button class="filter-btn active" data-filter="all">All</button>
           <button class="filter-btn" data-filter="Russia">Russia</button>
           <button class="filter-btn" data-filter="China">China</button>
-          <button class="filter-btn" data-filter="North Korea">N. Korea</button>
+          <button class="filter-btn" data-filter="North Korea">DPRK</button>
           <button class="filter-btn" data-filter="Iran">Iran</button>
           <button class="filter-btn" data-filter="India">India</button>
           <button class="filter-btn" data-filter="United States">USA</button>
@@ -54,15 +63,18 @@
         </div>
       </div>
       <div class="apt-list" id="apt-list">
-        <div class="loading"><div class="loading-spinner"></div> Loading groups...</div>
+        <div class="loading"><div class="loading-spinner"></div> Loading...</div>
       </div>
     </aside>
 
   </div>
 
-  <!-- Detail Panel (slides in from right) -->
+  <!-- Detail Panel -->
   <div class="detail-panel" id="detail-panel"></div>
   <div class="overlay-dimmer" id="overlay-dimmer" onclick="closeDetail()"></div>
+
+  <!-- Tooltip -->
+  <div class="map-tooltip" id="map-tooltip"></div>
 
   <script src="js/app.js"></script>
 </body>

@@ -1,7 +1,4 @@
-let aptData = null;
-let selectedGroup = null;
-let activeFilter = 'all';
-
+// ─── Config ─────────────────────────────────────────────
 const ORIGIN_COLORS = {
   'Russia': '#e74c3c',
   'China': '#e67e22',
@@ -13,282 +10,463 @@ const ORIGIN_COLORS = {
 };
 
 const THREAT_COLORS = {
-  'critical': '#ef4444',
-  'high': '#f97316',
-  'medium': '#eab308',
-  'low': '#22c55e'
+  critical: '#ef4444',
+  high: '#f97316',
+  medium: '#eab308'
 };
 
-// Equirectangular projection helpers
-function lonLatToXY(lon, lat, width, height) {
-  const x = ((lon + 180) / 360) * width;
-  const y = ((90 - lat) / 180) * height;
-  return { x, y };
-}
+const COUNTRY_NAME_MAP = {
+  'Russia': 'Russia',
+  'China': 'China',
+  'North Korea': 'N. Korea',
+  'Iran': 'Iran',
+  'United States': 'United States of America',
+  'Vietnam': 'Vietnam',
+  'India': 'India'
+};
 
+// Region centroids for drawing attack arcs
+const REGION_COORDS = {
+  'North America': [-100, 45],
+  'South America': [-60, -15],
+  'Europe': [15, 50],
+  'Middle East': [45, 28],
+  'Central Asia': [65, 42],
+  'East Asia': [120, 35],
+  'Southeast Asia': [110, 5],
+  'South Asia': [78, 22],
+  'Oceania': [135, -25],
+  'Africa': [20, 5],
+  'Global': [0, 20],
+  'Ukraine': [32, 49],
+  'South Korea': [127, 36],
+  'Japan': [138, 36],
+  'Asia Pacific': [130, 15],
+  'Americas': [-80, 20],
+  'United States': [-98, 38]
+};
+
+const TOPO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+
+// ─── State ──────────────────────────────────────────────
+let aptData = null;
+let selectedGroup = null;
+let activeFilter = 'all';
+let svg, g, projection, path, zoom;
+let mapWidth, mapHeight;
+
+// ─── Init ───────────────────────────────────────────────
 async function init() {
-  try {
-    const resp = await fetch('data/apt-groups.json');
-    aptData = await resp.json();
-    renderStats();
-    renderMap();
-    renderLegend();
-    renderSidebar();
-    setupSearch();
-    setupFilters();
-  } catch (err) {
-    console.error('Failed to load APT data:', err);
-  }
+  const [worldRes, aptRes] = await Promise.all([
+    fetch(TOPO_URL),
+    fetch('data/apt-groups.json')
+  ]);
+  const world = await worldRes.json();
+  aptData = await aptRes.json();
+
+  renderStats();
+  renderMap(world);
+  renderLegend();
+  renderSidebar();
+  setupSearch();
+  setupFilters();
+  setupControls();
 }
 
+// ─── Stats ──────────────────────────────────────────────
 function renderStats() {
   const el = document.getElementById('stats');
   const groups = aptData.apt_groups;
   const activeCount = groups.filter(g => g.active).length;
   const origins = new Set(groups.map(g => g.origin)).size;
-
   el.innerHTML = `
-    <div class="stat-item">
-      <div class="stat-value">${groups.length}</div>
-      <div class="stat-label">APT Groups</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-value">${activeCount}</div>
-      <div class="stat-label">Active</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-value">${origins}</div>
-      <div class="stat-label">Origins</div>
-    </div>
+    <div class="stat-item"><div class="stat-value">${groups.length}</div><div class="stat-label">APT Groups</div></div>
+    <div class="stat-item"><div class="stat-value">${activeCount}</div><div class="stat-label">Active</div></div>
+    <div class="stat-item"><div class="stat-value">${origins}</div><div class="stat-label">Origins</div></div>
   `;
 }
 
-function renderMap() {
+// ─── Map ────────────────────────────────────────────────
+function renderMap(world) {
   const container = document.getElementById('world-map');
-  const width = container.clientWidth;
-  const height = container.clientHeight;
+  mapWidth = container.clientWidth;
+  mapHeight = container.clientHeight;
 
-  // Build SVG map
-  let svg = `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">`;
+  // Projection
+  projection = d3.geoNaturalEarth1()
+    .fitSize([mapWidth, mapHeight], { type: 'Sphere' })
+    .precision(0.1);
 
-  // Background
-  svg += `<rect width="${width}" height="${height}" fill="#0a0e17"/>`;
+  path = d3.geoPath(projection);
 
-  // Grid lines
-  for (let lon = -180; lon <= 180; lon += 30) {
-    const { x } = lonLatToXY(lon, 0, width, height);
-    svg += `<line x1="${x}" y1="0" x2="${x}" y2="${height}" stroke="#151d2b" stroke-width="0.5"/>`;
-  }
-  for (let lat = -90; lat <= 90; lat += 30) {
-    const { y } = lonLatToXY(0, lat, width, height);
-    svg += `<line x1="0" y1="${y}" x2="${width}" y2="${y}" stroke="#151d2b" stroke-width="0.5"/>`;
-  }
+  // SVG
+  svg = d3.select(container)
+    .html('')
+    .append('svg')
+    .attr('width', mapWidth)
+    .attr('height', mapHeight);
 
-  // Simplified world landmass polygons (major continents)
-  svg += renderContinents(width, height);
+  // Defs for glow filters and gradients
+  const defs = svg.append('defs');
 
-  // Attack connection lines between origins
-  svg += renderAttackLines(width, height);
+  // Glow filter
+  const glowFilter = defs.append('filter').attr('id', 'glow');
+  glowFilter.append('feGaussianBlur').attr('stdDeviation', '3').attr('result', 'blur');
+  glowFilter.append('feMerge').selectAll('feMergeNode')
+    .data(['blur', 'SourceGraphic']).enter()
+    .append('feMergeNode').attr('in', d => d);
 
-  // APT group markers
-  const markerGroups = groupByOrigin(aptData.apt_groups);
-  for (const [origin, groups] of Object.entries(markerGroups)) {
+  // Soft glow for markers
+  const softGlow = defs.append('filter').attr('id', 'softGlow');
+  softGlow.append('feGaussianBlur').attr('stdDeviation', '4').attr('result', 'blur');
+  softGlow.append('feMerge').selectAll('feMergeNode')
+    .data(['blur', 'SourceGraphic']).enter()
+    .append('feMergeNode').attr('in', d => d);
+
+  // Zoom behavior
+  zoom = d3.zoom()
+    .scaleExtent([1, 8])
+    .on('zoom', (event) => {
+      g.attr('transform', event.transform);
+    });
+
+  svg.call(zoom);
+
+  g = svg.append('g');
+
+  // Sphere background
+  g.append('path')
+    .datum({ type: 'Sphere' })
+    .attr('class', 'sphere')
+    .attr('d', path);
+
+  // Graticule
+  const graticule = d3.geoGraticule().step([20, 20]);
+  g.append('path')
+    .datum(graticule())
+    .attr('class', 'graticule')
+    .attr('d', path);
+
+  // Countries
+  const countries = topojson.feature(world, world.objects.countries);
+
+  g.selectAll('.land')
+    .data(countries.features)
+    .enter()
+    .append('path')
+    .attr('class', 'land')
+    .attr('d', path)
+    .attr('data-name', d => d.properties.name);
+
+  // Country borders
+  g.append('path')
+    .datum(topojson.mesh(world, world.objects.countries, (a, b) => a !== b))
+    .attr('class', 'country-border')
+    .attr('d', path);
+
+  // Attack arcs layer
+  const arcsLayer = g.append('g').attr('class', 'arcs-layer');
+
+  // Markers layer
+  const markersLayer = g.append('g').attr('class', 'markers-layer');
+
+  // Place APT markers
+  renderMarkers(markersLayer);
+
+  // Precompute arcs (hidden until hover/select)
+  renderArcs(arcsLayer);
+}
+
+function renderMarkers(layer) {
+  const groups = aptData.apt_groups;
+  const byOrigin = {};
+  groups.forEach(g => {
+    if (!byOrigin[g.origin]) byOrigin[g.origin] = [];
+    byOrigin[g.origin].push(g);
+  });
+
+  const tooltip = document.getElementById('map-tooltip');
+
+  Object.entries(byOrigin).forEach(([origin, oGroups]) => {
     const color = ORIGIN_COLORS[origin] || '#888';
-    const baseCoords = aptData.origins[origin]?.coords || groups[0].origin_coords;
 
-    groups.forEach((group, i) => {
-      // Offset markers slightly so they don't overlap
-      const angle = (i / groups.length) * Math.PI * 2;
-      const offsetLon = baseCoords[1] + Math.cos(angle) * (groups.length > 1 ? 3 + i * 1.5 : 0);
-      const offsetLat = baseCoords[0] + Math.sin(angle) * (groups.length > 1 ? 2 + i * 1 : 0);
-      const { x, y } = lonLatToXY(offsetLon, offsetLat, width, height);
+    oGroups.forEach((group, i) => {
+      // Offset groups from same origin so they don't stack
+      const baseCoords = group.origin_coords;
+      const angle = (i / oGroups.length) * Math.PI * 2;
+      const spread = oGroups.length > 1 ? 3 + i * 1.2 : 0;
+      const lon = baseCoords[1] + Math.cos(angle) * spread;
+      const lat = baseCoords[0] + Math.sin(angle) * spread;
+      const [px, py] = projection([lon, lat]);
+
+      if (isNaN(px) || isNaN(py)) return;
 
       const threat = group.threat_level;
-      const size = threat === 'critical' ? 7 : threat === 'high' ? 5.5 : 4;
-      const glowSize = size * 3;
+      const r = threat === 'critical' ? 5 : threat === 'high' ? 4 : 3;
 
-      // Glow effect
-      svg += `<circle cx="${x}" cy="${y}" r="${glowSize}" fill="${color}" opacity="0.08">
-        <animate attributeName="r" values="${glowSize};${glowSize * 1.8};${glowSize}" dur="${threat === 'critical' ? '2s' : '3s'}" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0.08;0.02;0.08" dur="${threat === 'critical' ? '2s' : '3s'}" repeatCount="indefinite"/>
-      </circle>`;
+      const markerG = layer.append('g')
+        .attr('class', 'apt-marker-group')
+        .attr('transform', `translate(${px},${py})`)
+        .attr('data-id', group.id);
 
-      // Outer ring
-      svg += `<circle cx="${x}" cy="${y}" r="${size + 2}" fill="none" stroke="${color}" stroke-width="0.5" opacity="0.4">
-        <animate attributeName="r" values="${size + 2};${size + 6};${size + 2}" dur="3s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0.4;0;0.4" dur="3s" repeatCount="indefinite"/>
-      </circle>`;
+      // Animated glow
+      markerG.append('circle')
+        .attr('class', 'marker-glow')
+        .attr('r', r * 4)
+        .attr('fill', color)
+        .attr('filter', 'url(#softGlow)');
+
+      // Pulsing ring
+      const ring = markerG.append('circle')
+        .attr('class', 'marker-ring')
+        .attr('r', r + 4)
+        .attr('stroke', color);
+
+      // Pulse animation
+      function pulseRing() {
+        ring
+          .attr('r', r + 4)
+          .attr('opacity', 0.5)
+          .transition()
+          .duration(threat === 'critical' ? 1800 : 2500)
+          .attr('r', r + 14)
+          .attr('opacity', 0)
+          .on('end', pulseRing);
+      }
+      if (group.active) pulseRing();
 
       // Main dot
-      svg += `<circle cx="${x}" cy="${y}" r="${size}" fill="${color}" opacity="0.9"
-        class="marker-circle" data-id="${group.id}" style="cursor:pointer"/>`;
+      markerG.append('circle')
+        .attr('class', 'marker-dot')
+        .attr('r', r)
+        .attr('fill', color);
 
-      // Inner bright dot
-      svg += `<circle cx="${x}" cy="${y}" r="${size * 0.4}" fill="white" opacity="0.6"
-        class="marker-circle" data-id="${group.id}" style="cursor:pointer; pointer-events:none"/>`;
+      // Inner bright spot
+      markerG.append('circle')
+        .attr('class', 'marker-inner')
+        .attr('r', r * 0.35)
+        .attr('fill', '#fff')
+        .attr('opacity', 0.5);
 
-      // Label
-      svg += `<text x="${x}" y="${y - size - 6}" text-anchor="middle" fill="${color}"
-        font-size="9" font-weight="600" font-family="Inter, sans-serif" class="marker-label"
-        data-id="${group.id}" opacity="0" style="pointer-events:none; text-shadow: 0 1px 3px rgba(0,0,0,0.9)">${group.name}</text>`;
+      // Label (hidden by default, shown on hover)
+      markerG.append('text')
+        .attr('class', 'marker-label')
+        .attr('y', -(r + 8))
+        .attr('text-anchor', 'middle')
+        .attr('fill', color)
+        .attr('font-size', '8px')
+        .attr('opacity', 0)
+        .text(group.name);
+
+      // Events
+      markerG.on('mouseenter', (event) => {
+        markerG.select('.marker-label').attr('opacity', 1);
+        markerG.select('.marker-glow').attr('opacity', 0.3);
+        showTooltip(event, group, color);
+        showArcs(group.id);
+      });
+
+      markerG.on('mouseleave', () => {
+        markerG.select('.marker-label').attr('opacity', 0);
+        markerG.select('.marker-glow').attr('opacity', 0.15);
+        hideTooltip();
+        if (!selectedGroup || selectedGroup.id !== group.id) {
+          hideArcs(group.id);
+        }
+      });
+
+      markerG.on('click', () => {
+        openDetail(group);
+      });
     });
+  });
+}
+
+function renderArcs(layer) {
+  const groups = aptData.apt_groups;
+
+  groups.forEach(group => {
+    const color = ORIGIN_COLORS[group.origin] || '#888';
+    const originLon = group.origin_coords[1];
+    const originLat = group.origin_coords[0];
+
+    group.target_regions.forEach(region => {
+      const target = REGION_COORDS[region];
+      if (!target) return;
+
+      const arcPath = createGreatCircleArc([originLon, originLat], target);
+      if (!arcPath) return;
+
+      // Glow arc
+      layer.append('path')
+        .attr('class', `attack-arc-glow arc-${group.id}`)
+        .attr('d', path(arcPath))
+        .attr('stroke', color);
+
+      // Main arc
+      const mainArc = layer.append('path')
+        .attr('class', `attack-arc arc-${group.id}`)
+        .attr('d', path(arcPath))
+        .attr('stroke', color)
+        .attr('stroke-dasharray', '4,3');
+
+      // Animated particle
+      const particlePath = layer.append('circle')
+        .attr('class', `arc-particle arc-particle-${group.id}`)
+        .attr('r', 2)
+        .attr('fill', color)
+        .attr('filter', 'url(#glow)');
+
+      // Store path ref for animation
+      mainArc.node().__particleCircle = particlePath;
+      mainArc.node().__group = group.id;
+    });
+  });
+}
+
+function createGreatCircleArc(source, target) {
+  const interp = d3.geoInterpolate(source, target);
+  const numPoints = 30;
+  const coords = [];
+  for (let i = 0; i <= numPoints; i++) {
+    coords.push(interp(i / numPoints));
   }
-
-  svg += '</svg>';
-  container.innerHTML = svg;
-
-  // Add event listeners to markers
-  container.querySelectorAll('.marker-circle').forEach(el => {
-    el.addEventListener('click', () => {
-      const id = el.dataset.id;
-      const group = aptData.apt_groups.find(g => g.id === id);
-      if (group) openDetail(group);
-    });
-    el.addEventListener('mouseenter', () => {
-      const id = el.dataset.id;
-      container.querySelectorAll(`.marker-label[data-id="${id}"]`).forEach(l => l.setAttribute('opacity', '1'));
-    });
-    el.addEventListener('mouseleave', () => {
-      const id = el.dataset.id;
-      container.querySelectorAll(`.marker-label[data-id="${id}"]`).forEach(l => l.setAttribute('opacity', '0'));
-    });
-  });
+  return { type: 'LineString', coordinates: coords };
 }
 
-function renderContinents(w, h) {
-  let paths = '';
-
-  // Simplified continent outlines as filled polygons
-  const continents = [
-    // North America
-    { points: [[-130,55],[-125,60],[-110,68],[-95,72],[-80,72],[-65,60],[-55,47],[-65,43],[-75,35],[-80,25],[-90,18],[-100,18],[-105,22],[-115,30],[-125,48],[-130,55]], name: 'North America' },
-    // South America
-    { points: [[-80,10],[-75,5],[-70,-5],[-75,-15],[-70,-25],[-65,-35],[-70,-50],[-75,-55],[-68,-55],[-65,-45],[-55,-35],[-40,-22],[-35,-10],[-50,0],[-60,5],[-70,12],[-80,10]], name: 'South America' },
-    // Europe
-    { points: [[-10,36],[0,38],[5,44],[0,48],[-5,48],[0,52],[5,54],[10,55],[12,58],[18,58],[25,60],[30,62],[32,65],[35,68],[30,70],[20,70],[10,65],[5,62],[0,58],[-5,55],[-10,50],[-10,36]], name: 'Europe' },
-    // Africa
-    { points: [[-15,35],[-17,15],[-10,5],[-5,5],[5,5],[10,0],[12,-5],[15,-10],[20,-15],[30,-25],[35,-33],[30,-35],[25,-30],[20,-25],[15,-15],[10,-5],[15,5],[20,10],[30,12],[35,10],[40,12],[42,10],[45,12],[50,15],[43,15],[38,20],[35,32],[30,35],[25,37],[15,37],[5,36],[-5,35],[-15,35]], name: 'Africa' },
-    // Asia
-    { points: [[30,35],[35,37],[40,40],[45,38],[50,40],[55,37],[60,38],[65,35],[70,35],[75,30],[80,28],[85,28],[90,22],[95,15],[100,10],[105,15],[110,20],[115,22],[120,24],[125,30],[130,35],[135,35],[130,42],[135,45],[140,45],[145,50],[142,55],[135,55],[130,48],[125,42],[120,45],[115,48],[110,50],[100,55],[90,55],[80,58],[70,55],[65,55],[55,55],[50,52],[45,48],[40,42],[35,40],[30,35]], name: 'Asia' },
-    // Oceania / Australia
-    { points: [[115,-15],[120,-15],[130,-12],[135,-15],[140,-18],[145,-20],[150,-25],[152,-28],[150,-35],[145,-38],[140,-38],[135,-35],[130,-32],[125,-33],[118,-34],[115,-32],[113,-25],[115,-20],[115,-15]], name: 'Australia' },
-    // Japan
-    { points: [[130,31],[132,33],[135,35],[137,37],[140,40],[142,43],[145,45],[143,44],[140,42],[138,38],[136,36],[133,34],[130,31]], name: 'Japan' },
-    // UK/Ireland
-    { points: [[-8,50],[-5,50],[-3,52],[0,52],[2,53],[0,56],[-2,57],[-5,58],[-6,56],[-4,54],[-5,52],[-8,51],[-8,50]], name: 'UK' },
-    // Indonesia
-    { points: [[95,-5],[100,-3],[105,-5],[108,-7],[112,-8],[115,-8],[120,-9],[125,-8],[130,-5],[135,-4],[140,-5],[140,-8],[135,-9],[128,-10],[120,-10],[115,-9],[110,-8],[105,-7],[100,-5],[95,-5]], name: 'Indonesia' },
-  ];
-
-  continents.forEach(c => {
-    const pts = c.points.map(([lon, lat]) => {
-      const { x, y } = lonLatToXY(lon, lat, w, h);
-      return `${x},${y}`;
-    }).join(' ');
-    paths += `<polygon points="${pts}" fill="#1a2332" stroke="#2a3a50" stroke-width="0.5" class="continent"/>`;
-  });
-
-  return paths;
-}
-
-function renderAttackLines(w, h) {
-  let lines = '';
-  const origins = aptData.origins;
-
-  // Draw subtle connection lines between origin countries
-  const pairs = [
-    ['Russia', 'China'],
-    ['Russia', 'Iran'],
-    ['China', 'North Korea'],
-  ];
-
-  pairs.forEach(([a, b]) => {
-    if (origins[a] && origins[b]) {
-      const from = lonLatToXY(origins[a].coords[1], origins[a].coords[0], w, h);
-      const to = lonLatToXY(origins[b].coords[1], origins[b].coords[0], w, h);
-      const midX = (from.x + to.x) / 2;
-      const midY = Math.min(from.y, to.y) - 20;
-      lines += `<path d="M${from.x},${from.y} Q${midX},${midY} ${to.x},${to.y}"
-        fill="none" stroke="#2a3a50" stroke-width="0.5" stroke-dasharray="4,4" opacity="0.3"/>`;
+function showArcs(groupId) {
+  svg.selectAll(`.arc-${groupId}`).classed('visible', true);
+  // Animate particles along arcs
+  svg.selectAll(`.attack-arc.arc-${groupId}`).each(function() {
+    const arcNode = this;
+    const particle = d3.select(arcNode.__particleCircle?.node());
+    if (!particle.empty()) {
+      particle.classed('visible', true);
+      animateParticle(arcNode, particle);
     }
   });
-
-  return lines;
 }
 
-function groupByOrigin(groups) {
-  const map = {};
-  groups.forEach(g => {
-    if (!map[g.origin]) map[g.origin] = [];
-    map[g.origin].push(g);
-  });
-  return map;
+function hideArcs(groupId) {
+  svg.selectAll(`.arc-${groupId}`).classed('visible', false);
+  svg.selectAll(`.arc-particle-${groupId}`).classed('visible', false);
 }
 
+function animateParticle(pathNode, particle) {
+  const totalLength = pathNode.getTotalLength();
+  if (!totalLength) return;
+
+  function animate() {
+    if (!particle.classed('visible')) return;
+    particle
+      .attr('transform', () => {
+        const p = pathNode.getPointAtLength(0);
+        return `translate(${p.x},${p.y})`;
+      })
+      .transition()
+      .duration(2000)
+      .attrTween('transform', () => {
+        return (t) => {
+          const p = pathNode.getPointAtLength(t * totalLength);
+          return `translate(${p.x},${p.y})`;
+        };
+      })
+      .on('end', animate);
+  }
+  animate();
+}
+
+// ─── Tooltip ────────────────────────────────────────────
+function showTooltip(event, group, color) {
+  const tt = document.getElementById('map-tooltip');
+  const threatColor = THREAT_COLORS[group.threat_level] || '#888';
+  tt.innerHTML = `
+    <div class="tt-name" style="color:${color}">${group.name}</div>
+    <div class="tt-origin">${group.origin} &middot; Since ${group.first_seen}</div>
+    <div class="tt-threat" style="background:${threatColor}22;color:${threatColor};border:1px solid ${threatColor}44">${group.threat_level}</div>
+  `;
+  tt.style.left = (event.pageX + 14) + 'px';
+  tt.style.top = (event.pageY - 10) + 'px';
+  tt.classList.add('show');
+}
+
+function hideTooltip() {
+  document.getElementById('map-tooltip').classList.remove('show');
+}
+
+// ─── Legend ─────────────────────────────────────────────
 function renderLegend() {
   const el = document.getElementById('map-legend');
-  let html = '';
-  for (const [name, color] of Object.entries(ORIGIN_COLORS)) {
-    html += `<div class="legend-item">
-      <span class="legend-dot" style="background:${color}"></span>
-      ${name}
-    </div>`;
-  }
-  el.innerHTML = html;
+  el.innerHTML = Object.entries(ORIGIN_COLORS).map(([name, color]) =>
+    `<div class="legend-item" data-origin="${name}">
+      <span class="legend-dot" style="background:${color}"></span>${name}
+    </div>`
+  ).join('');
+
+  el.querySelectorAll('.legend-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const origin = item.dataset.origin;
+      // Set filter
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      const btn = document.querySelector(`.filter-btn[data-filter="${origin}"]`);
+      if (btn) btn.classList.add('active');
+      activeFilter = origin;
+      applyFilters();
+    });
+  });
 }
 
+// ─── Sidebar ────────────────────────────────────────────
 function renderSidebar(groups) {
   const list = document.getElementById('apt-list');
   const data = groups || aptData.apt_groups;
 
   if (data.length === 0) {
-    list.innerHTML = '<div style="padding:2rem;text-align:center;color:var(--text-muted)">No groups match your search.</div>';
+    list.innerHTML = '<div style="padding:2rem;text-align:center;color:var(--text-muted);font-size:0.8rem">No groups match your search.</div>';
     return;
   }
 
-  // Sort: critical first, then high, then medium
   const sorted = [...data].sort((a, b) => {
     const order = { critical: 0, high: 1, medium: 2, low: 3 };
-    return (order[a.threat_level] || 3) - (order[b.threat_level] || 3);
+    return (order[a.threat_level] ?? 3) - (order[b.threat_level] ?? 3);
   });
 
-  list.innerHTML = sorted.map(g => `
-    <div class="apt-card" data-id="${g.id}" onclick="openDetail(aptData.apt_groups.find(x=>x.id==='${g.id}'))">
+  list.innerHTML = sorted.map(g => {
+    const color = ORIGIN_COLORS[g.origin] || '#e2e8f0';
+    return `
+    <div class="apt-card${selectedGroup?.id === g.id ? ' selected' : ''}" data-id="${g.id}">
       <div class="apt-card-header">
-        <span class="apt-name" style="color:${ORIGIN_COLORS[g.origin] || '#e2e8f0'}">${g.name}</span>
+        <span class="apt-name" style="color:${color}">${g.name}</span>
         <span class="threat-badge ${g.threat_level}">${g.threat_level}</span>
       </div>
-      <div class="apt-origin">${g.origin} &middot; Since ${g.first_seen} ${g.active ? '<span style="color:#22c55e">&#9679; Active</span>' : '<span style="color:#64748b">&#9679; Inactive</span>'}</div>
-      <div class="apt-aliases">${g.aliases.slice(0, 3).join(', ')}${g.aliases.length > 3 ? '...' : ''}</div>
-      <div class="apt-tags">
-        ${g.targets.slice(0, 4).map(t => `<span class="apt-tag">${t}</span>`).join('')}
-      </div>
-    </div>
-  `).join('');
+      <div class="apt-origin">${g.origin} &middot; ${g.first_seen} ${g.active
+        ? '<span style="color:#22c55e">&#9679; Active</span>'
+        : '<span style="color:#586374">&#9679; Inactive</span>'}</div>
+      <div class="apt-aliases">${g.aliases.slice(0, 3).join(', ')}</div>
+      <div class="apt-tags">${g.targets.slice(0, 4).map(t => `<span class="apt-tag">${t}</span>`).join('')}</div>
+    </div>`;
+  }).join('');
+
+  // Click handlers
+  list.querySelectorAll('.apt-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const group = aptData.apt_groups.find(g => g.id === card.dataset.id);
+      if (group) openDetail(group);
+    });
+    card.addEventListener('mouseenter', () => {
+      showArcs(card.dataset.id);
+    });
+    card.addEventListener('mouseleave', () => {
+      if (!selectedGroup || selectedGroup.id !== card.dataset.id) {
+        hideArcs(card.dataset.id);
+      }
+    });
+  });
 }
 
+// ─── Search & Filters ───────────────────────────────────
 function setupSearch() {
-  const input = document.getElementById('search-input');
-  input.addEventListener('input', () => {
-    const q = input.value.toLowerCase().trim();
-    let filtered = aptData.apt_groups;
-
-    if (q) {
-      filtered = filtered.filter(g =>
-        g.name.toLowerCase().includes(q) ||
-        g.aliases.some(a => a.toLowerCase().includes(q)) ||
-        g.origin.toLowerCase().includes(q) ||
-        g.targets.some(t => t.toLowerCase().includes(q)) ||
-        g.malware.some(m => m.toLowerCase().includes(q))
-      );
-    }
-
-    if (activeFilter !== 'all') {
-      filtered = filtered.filter(g => g.origin === activeFilter);
-    }
-
-    renderSidebar(filtered);
-  });
+  document.getElementById('search-input').addEventListener('input', applyFilters);
 }
 
 function setupFilters() {
@@ -297,37 +475,76 @@ function setupFilters() {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       activeFilter = btn.dataset.filter;
-
-      const q = document.getElementById('search-input').value.toLowerCase().trim();
-      let filtered = aptData.apt_groups;
-
-      if (activeFilter !== 'all') {
-        filtered = filtered.filter(g => g.origin === activeFilter);
-      }
-      if (q) {
-        filtered = filtered.filter(g =>
-          g.name.toLowerCase().includes(q) ||
-          g.aliases.some(a => a.toLowerCase().includes(q)) ||
-          g.origin.toLowerCase().includes(q)
-        );
-      }
-
-      renderSidebar(filtered);
+      applyFilters();
     });
   });
 }
 
+function applyFilters() {
+  const q = document.getElementById('search-input').value.toLowerCase().trim();
+  let filtered = aptData.apt_groups;
+
+  if (activeFilter !== 'all') {
+    filtered = filtered.filter(g => g.origin === activeFilter);
+  }
+
+  if (q) {
+    filtered = filtered.filter(g =>
+      g.name.toLowerCase().includes(q) ||
+      g.aliases.some(a => a.toLowerCase().includes(q)) ||
+      g.origin.toLowerCase().includes(q) ||
+      g.targets.some(t => t.toLowerCase().includes(q)) ||
+      g.malware.some(m => m.toLowerCase().includes(q))
+    );
+  }
+
+  renderSidebar(filtered);
+
+  // Highlight markers
+  svg.selectAll('.apt-marker-group').attr('opacity', d => {
+    if (filtered.length === aptData.apt_groups.length) return 1;
+    const id = d3.select(d || this).attr('data-id');
+    return 1;
+  });
+
+  // Dim non-matching markers
+  const filteredIds = new Set(filtered.map(g => g.id));
+  svg.selectAll('.apt-marker-group').each(function() {
+    const id = this.getAttribute('data-id');
+    d3.select(this).attr('opacity', filteredIds.has(id) ? 1 : 0.15);
+  });
+}
+
+// ─── Map Controls ───────────────────────────────────────
+function setupControls() {
+  document.getElementById('zoom-in').addEventListener('click', () => {
+    svg.transition().duration(300).call(zoom.scaleBy, 1.5);
+  });
+
+  document.getElementById('zoom-out').addEventListener('click', () => {
+    svg.transition().duration(300).call(zoom.scaleBy, 0.67);
+  });
+
+  document.getElementById('zoom-reset').addEventListener('click', () => {
+    svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+  });
+}
+
+// ─── Detail Panel ───────────────────────────────────────
 function openDetail(group) {
+  // Hide previous arcs
+  if (selectedGroup) hideArcs(selectedGroup.id);
+
   selectedGroup = group;
+  const color = ORIGIN_COLORS[group.origin] || '#e2e8f0';
   const panel = document.getElementById('detail-panel');
-  const dimmer = document.getElementById('overlay-dimmer');
 
   panel.innerHTML = `
     <div class="detail-header">
       <div>
-        <div class="detail-title" style="color:${ORIGIN_COLORS[group.origin] || '#e2e8f0'}">${group.name}</div>
-        <div class="active-indicator" style="margin-top:0.3rem">
-          <span class="dot ${group.active ? 'active' : 'inactive'}"></span>
+        <div class="detail-title" style="color:${color}">${group.name}</div>
+        <div style="margin-top:4px;font-size:0.75rem">
+          <span class="active-dot ${group.active ? 'on' : 'off'}"></span>
           <span style="color:${group.active ? 'var(--accent-green)' : 'var(--text-muted)'}">${group.active ? 'Currently Active' : 'Inactive'}</span>
         </div>
       </div>
@@ -338,13 +555,12 @@ function openDetail(group) {
         <div class="detail-section-title">Overview</div>
         <div class="detail-description">${group.description}</div>
       </div>
-
       <div class="detail-section">
         <div class="detail-section-title">Details</div>
         <div class="detail-meta">
           <div class="meta-item">
             <div class="meta-label">Origin</div>
-            <div class="meta-value" style="color:${ORIGIN_COLORS[group.origin]}">${group.origin}</div>
+            <div class="meta-value" style="color:${color}">${group.origin}</div>
           </div>
           <div class="meta-item">
             <div class="meta-label">First Seen</div>
@@ -356,45 +572,40 @@ function openDetail(group) {
           </div>
           <div class="meta-item">
             <div class="meta-label">Target Regions</div>
-            <div class="meta-value" style="font-size:0.75rem">${group.target_regions.join(', ')}</div>
+            <div class="meta-value" style="font-size:0.7rem">${group.target_regions.join(', ')}</div>
           </div>
         </div>
       </div>
-
       <div class="detail-section">
         <div class="detail-section-title">Aliases</div>
-        <div class="detail-tags">
-          ${group.aliases.map(a => `<span class="detail-tag">${a}</span>`).join('')}
-        </div>
+        <div class="detail-tags">${group.aliases.map(a => `<span class="detail-tag alias">${a}</span>`).join('')}</div>
       </div>
-
       <div class="detail-section">
         <div class="detail-section-title">Target Sectors</div>
-        <div class="detail-tags">
-          ${group.targets.map(t => `<span class="detail-tag target">${t}</span>`).join('')}
-        </div>
+        <div class="detail-tags">${group.targets.map(t => `<span class="detail-tag target">${t}</span>`).join('')}</div>
       </div>
-
+      <div class="detail-section">
+        <div class="detail-section-title">Target Regions</div>
+        <div class="detail-tags">${group.target_regions.map(r => `<span class="detail-tag region">${r}</span>`).join('')}</div>
+      </div>
       <div class="detail-section">
         <div class="detail-section-title">TTPs</div>
-        <div class="detail-tags">
-          ${group.ttps.map(t => `<span class="detail-tag ttp">${t}</span>`).join('')}
-        </div>
+        <div class="detail-tags">${group.ttps.map(t => `<span class="detail-tag ttp">${t}</span>`).join('')}</div>
       </div>
-
       <div class="detail-section">
         <div class="detail-section-title">Associated Malware</div>
-        <div class="detail-tags">
-          ${group.malware.map(m => `<span class="detail-tag malware">${m}</span>`).join('')}
-        </div>
+        <div class="detail-tags">${group.malware.map(m => `<span class="detail-tag malware">${m}</span>`).join('')}</div>
       </div>
     </div>
   `;
 
   panel.classList.add('open');
-  dimmer.classList.add('active');
+  document.getElementById('overlay-dimmer').classList.add('active');
 
-  // Highlight card in sidebar
+  // Show arcs for selected group
+  showArcs(group.id);
+
+  // Update sidebar selection
   document.querySelectorAll('.apt-card').forEach(c => c.classList.remove('selected'));
   const card = document.querySelector(`.apt-card[data-id="${group.id}"]`);
   if (card) {
@@ -404,20 +615,24 @@ function openDetail(group) {
 }
 
 function closeDetail() {
+  if (selectedGroup) hideArcs(selectedGroup.id);
+  selectedGroup = null;
   document.getElementById('detail-panel').classList.remove('open');
   document.getElementById('overlay-dimmer').classList.remove('active');
   document.querySelectorAll('.apt-card').forEach(c => c.classList.remove('selected'));
-  selectedGroup = null;
 }
 
-// Handle resize
+// ─── Resize ─────────────────────────────────────────────
 let resizeTimer;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => {
-    if (aptData) renderMap();
-  }, 250);
+  resizeTimer = setTimeout(async () => {
+    if (!aptData) return;
+    const worldRes = await fetch(TOPO_URL);
+    const world = await worldRes.json();
+    renderMap(world);
+  }, 300);
 });
 
-// Init on load
+// ─── Start ──────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', init);
