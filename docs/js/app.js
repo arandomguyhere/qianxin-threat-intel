@@ -144,7 +144,7 @@ function renderStats() {
   const el = document.getElementById('stats');
   const groups = aptData.apt_groups;
   const activeCount = groups.filter(g => g.active).length;
-  const origins = new Set(groups.map(g => g.origin)).size;
+  const origins = new Set(groups.map(g => g.origin).filter(o => o !== 'Unknown')).size;
   const updated = aptData.metadata?.last_updated || 'Unknown';
   el.innerHTML = `
     <div class="stat-item"><div class="stat-value">${groups.length}</div><div class="stat-label">APT Groups</div></div>
@@ -471,11 +471,16 @@ function hideTooltip() {
 // ─── Legend ─────────────────────────────────────────────
 function renderLegend() {
   const el = document.getElementById('map-legend');
-  el.innerHTML = Object.entries(ORIGIN_COLORS).map(([name, color]) =>
-    `<div class="legend-item" data-origin="${name}">
+  // Only show origins that have groups in the data, skip Unknown
+  const activeOrigins = Object.entries(aptData.origins || {})
+    .filter(([name]) => name !== 'Unknown')
+    .sort((a, b) => b[1].groups_count - a[1].groups_count);
+  el.innerHTML = activeOrigins.map(([name, info]) => {
+    const color = ORIGIN_COLORS[name] || info.color || '#888';
+    return `<div class="legend-item" data-origin="${name}">
       <span class="legend-dot" style="background:${color}"></span>${name}
-    </div>`
-  ).join('');
+    </div>`;
+  }).join('');
 
   el.querySelectorAll('.legend-item').forEach(item => {
     item.addEventListener('click', () => {
