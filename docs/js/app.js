@@ -263,14 +263,15 @@ function renderMarkers(layer) {
       const baseCoords = group.origin_coords;
       if (baseCoords[0] === 0 && baseCoords[1] === 0) return;
 
-      // Offset groups from same origin so they don't stack
-      const angle = (i / oGroups.length) * Math.PI * 2;
-      const spread = oGroups.length > 1 ? 3 + i * 1.2 : 0;
-      const lon = baseCoords[1] + Math.cos(angle) * spread;
-      const lat = baseCoords[0] + Math.sin(angle) * spread;
-      const [px, py] = projection([lon, lat]);
+      // Project origin to pixel coords, then offset in a circle (pixel-space)
+      const [basePx, basePy] = projection([baseCoords[1], baseCoords[0]]);
+      if (isNaN(basePx) || isNaN(basePy)) return;
 
-      if (isNaN(px) || isNaN(py)) return;
+      const n = oGroups.length;
+      const angle = (i / n) * Math.PI * 2;
+      const pixelRadius = n > 1 ? Math.min(8 + n * 1.5, 25) : 0;
+      const px = basePx + Math.cos(angle) * pixelRadius;
+      const py = basePy + Math.sin(angle) * pixelRadius;
 
       const threat = group.threat_level;
       const r = threat === 'critical' ? 5 : threat === 'high' ? 4 : 3;
@@ -578,13 +579,6 @@ function applyFilters() {
   }
 
   renderSidebar(filtered);
-
-  // Highlight markers
-  svg.selectAll('.apt-marker-group').attr('opacity', d => {
-    if (filtered.length === aptData.apt_groups.length) return 1;
-    const id = d3.select(d || this).attr('data-id');
-    return 1;
-  });
 
   // Dim non-matching markers
   const filteredIds = new Set(filtered.map(g => g.id));
