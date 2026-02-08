@@ -1,200 +1,6 @@
 {
   "apt_groups": [
     {
-      "id": "apt-c-44",
-      "name": "APT-C-44",
-      "aliases": [],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "apt-q-13",
-      "name": "APT-Q-13",
-      "aliases": [
-        "APT-C-59"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "apt-q-42",
-      "name": "APT-Q-42",
-      "aliases": [
-        "Tengyun Snake",
-        "APT-C-61"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "apt-q-61",
-      "name": "APT-Q-61",
-      "aliases": [
-        "Prince of Persia",
-        "APT-C-07",
-        "Infy group",
-        "Operation Mermaid",
-        "Infy"
-      ],
-      "origin": "Iran",
-      "origin_coords": [
-        35.69,
-        51.39
-      ],
-      "first_seen": "2007",
-      "description": "Iranian cyber espionage group (Infy/Prince of Persia) conducting long-running surveillance campaigns against Iranian dissidents and regional targets.",
-      "targets": [
-        "Dissidents",
-        "Government",
-        "Diplomatic"
-      ],
-      "target_regions": [
-        "Iran",
-        "Europe",
-        "North America"
-      ],
-      "ttps": [
-        "Spear-phishing",
-        "Custom malware",
-        "Surveillance"
-      ],
-      "malware": [
-        "Infy",
-        "Foudre",
-        "Tonnerre"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "apt-q-67",
-      "name": "APT-Q-67",
-      "aliases": [
-        "APT-C-37",
-        "Pat Bear",
-        "Racquet Bear"
-      ],
-      "origin": "Kazakhstan",
-      "origin_coords": [
-        48.02,
-        66.92
-      ],
-      "first_seen": "2019",
-      "description": "Kazakhstan-linked group conducting cyber espionage operations targeting regional government and diplomatic entities.",
-      "targets": [
-        "Government",
-        "Diplomatic",
-        "NGOs"
-      ],
-      "target_regions": [
-        "Central Asia",
-        "CIS countries"
-      ],
-      "ttps": [
-        "Spear-phishing",
-        "Custom malware"
-      ],
-      "malware": [
-        "Custom backdoors"
-      ],
-      "threat_level": "medium",
-      "active": true
-    },
-    {
-      "id": "apt-q-90",
-      "name": "APT-Q-90",
-      "aliases": [
-        "APT-C-34",
-        "DustSquad",
-        "G0133",
-        "Golden Falcon",
-        "Nomadic Octopus"
-      ],
-      "origin": "Kazakhstan",
-      "origin_coords": [
-        48.02,
-        66.92
-      ],
-      "first_seen": "2014",
-      "description": "Kazakhstan-linked group (overlaps with DustSquad/Nomadic Octopus) targeting government entities in Central Asia.",
-      "targets": [
-        "Government",
-        "Diplomatic",
-        "Political organizations"
-      ],
-      "target_regions": [
-        "Central Asia"
-      ],
-      "ttps": [
-        "Spear-phishing",
-        "Android malware",
-        "Custom backdoors"
-      ],
-      "malware": [
-        "Octopus",
-        "Paperbug"
-      ],
-      "threat_level": "medium",
-      "active": true
-    },
-    {
       "id": "apt-q-92",
       "name": "APT-Q-92",
       "aliases": [
@@ -235,51 +41,6 @@
         "Green Lambert"
       ],
       "threat_level": "critical",
-      "active": true
-    },
-    {
-      "id": "apt-q-98",
-      "name": "APT-Q-98",
-      "aliases": [
-        "APT-C-36",
-        "TAG-144",
-        "G0099",
-        "BlindEagle",
-        "Blind Eagle",
-        "AguilaCiega",
-        "Blind eagle"
-      ],
-      "origin": "Colombia",
-      "origin_coords": [
-        4.57,
-        -74.3
-      ],
-      "first_seen": "2018",
-      "description": "South American group (Blind Eagle) targeting government, financial, and energy sectors primarily in Colombia and Ecuador.",
-      "targets": [
-        "Government",
-        "Financial",
-        "Energy",
-        "Health"
-      ],
-      "target_regions": [
-        "Colombia",
-        "Ecuador",
-        "Chile",
-        "Spain"
-      ],
-      "ttps": [
-        "Spear-phishing",
-        "Commodity RATs",
-        "Phishing kits"
-      ],
-      "malware": [
-        "AsyncRAT",
-        "NjRAT",
-        "QuasarRAT",
-        "LimeRAT"
-      ],
-      "threat_level": "high",
       "active": true
     },
     {
@@ -415,6 +176,685 @@
       "active": true
     },
     {
+      "id": "blackenergy",
+      "name": "BlackEnergy",
+      "aliases": [
+        "Koala Team",
+        "Ghost Blizzard",
+        "Electrum",
+        "DragonFly",
+        "Iron Liberty",
+        "DYMALLOY",
+        "Dragonfly2",
+        "TG-4192",
+        "G0035",
+        "Dragonfly",
+        "Havex",
+        "Group 24",
+        "BROMINE",
+        "ATK 6",
+        "Bromine",
+        "Blue Kraken",
+        "Crouching Yeti",
+        "Berserker Bear",
+        "Black Energy",
+        "CrouchingYeti",
+        "ITG15",
+        "Energetic Bear"
+      ],
+      "origin": "Russia",
+      "origin_coords": [
+        55.75,
+        37.62
+      ],
+      "first_seen": "2011",
+      "description": "Russian-linked group known for targeting energy sector and industrial control systems, particularly in Ukraine and Western countries.",
+      "targets": [
+        "Energy",
+        "Industrial control systems",
+        "Government"
+      ],
+      "target_regions": [
+        "Ukraine",
+        "Europe",
+        "United States"
+      ],
+      "ttps": [
+        "ICS/SCADA attacks",
+        "Watering holes",
+        "Spear-phishing",
+        "Supply chain attacks"
+      ],
+      "malware": [
+        "BlackEnergy",
+        "Havex",
+        "Goodor",
+        "Karagany"
+      ],
+      "threat_level": "critical",
+      "active": true
+    },
+    {
+      "id": "equation",
+      "name": "Equation",
+      "aliases": [
+        "Platinum Colony",
+        "G0020",
+        "Five Eyes",
+        "Equation Group",
+        "EQGRP",
+        "Tilded Team",
+        "APT-C-40",
+        "NSA"
+      ],
+      "origin": "United States",
+      "origin_coords": [
+        38.9,
+        -77.04
+      ],
+      "first_seen": "2001",
+      "description": "Highly sophisticated US-linked (NSA/TAO) group using advanced firmware-level implants and interdiction capabilities.",
+      "targets": [
+        "Government",
+        "Military",
+        "Telecommunications",
+        "Energy",
+        "Research"
+      ],
+      "target_regions": [
+        "Iran",
+        "Russia",
+        "Pakistan",
+        "Afghanistan",
+        "Global"
+      ],
+      "ttps": [
+        "Firmware implants",
+        "Air-gap jumping",
+        "Zero-day exploits",
+        "Supply chain interdiction"
+      ],
+      "malware": [
+        "EquationDrug",
+        "Fanny",
+        "GrayFish",
+        "DoubleFantasy"
+      ],
+      "threat_level": "critical",
+      "active": true
+    },
+    {
+      "id": "hermit",
+      "name": "Hermit",
+      "aliases": [
+        "TA-RedAnt",
+        "Alluring Pisces",
+        "Red Eyes",
+        "Crooked Pisces",
+        "TA444",
+        "TEMP.Reaper",
+        "Opal Sleet",
+        "Reaper",
+        "ATK 4",
+        "APT 37",
+        "Copernicium",
+        "ITG10",
+        "APT 38",
+        "Geumseong121",
+        "Selective Pisces",
+        "TEMP.Hermit",
+        "G0082",
+        "Bluenoroff",
+        "ScarCruft",
+        "Stardust Chollima",
+        "Nickel Gladstone",
+        "Venus 121",
+        "Group 123",
+        "Ricochet Chollima",
+        "CTG-6459",
+        "Sapphire Sleet",
+        "G0067",
+        "T-APT-15",
+        "TAG-71",
+        "Black Alicanto",
+        "Cerium",
+        "Moldy Pisces",
+        "Osmium",
+        "ATK 117",
+        "Ruby Sleet",
+        "InkySquid",
+        "APT38"
+      ],
+      "origin": "North Korea",
+      "origin_coords": [
+        39.02,
+        125.75
+      ],
+      "first_seen": "2009",
+      "description": "North Korean umbrella group encompassing Lazarus-related operations focused on financial theft and espionage across multiple subgroups.",
+      "targets": [
+        "Financial",
+        "Cryptocurrency",
+        "Defense",
+        "Government"
+      ],
+      "target_regions": [
+        "Global",
+        "South Korea",
+        "United States"
+      ],
+      "ttps": [
+        "Spear-phishing",
+        "Supply chain attacks",
+        "Cryptocurrency theft"
+      ],
+      "malware": [
+        "AppleJeus",
+        "TraderTraitor",
+        "BLINDINGCAN"
+      ],
+      "threat_level": "critical",
+      "active": true
+    },
+    {
+      "id": "lazarus",
+      "name": "Lazarus",
+      "aliases": [
+        "Operation GhostSecret",
+        "Hastati Group",
+        "NewRomanic Cyber Army Team",
+        "Covellite",
+        "APT-C-26",
+        "Nickel Academy",
+        "CTG-2460",
+        "Group 77",
+        "Unit 121",
+        "NICKEL ACADEMY",
+        "ZINC",
+        "Bluenoroff",
+        "Silent Chollima",
+        "Black Artemis",
+        "Bureau 121",
+        "Diamond Sleet",
+        "Guardians of Peace",
+        "Operation Troy",
+        "Lazarus Group"
+      ],
+      "origin": "North Korea",
+      "origin_coords": [
+        39.02,
+        125.75
+      ],
+      "first_seen": "2009",
+      "description": "North Korean state-sponsored group (RGB) conducting espionage, financial theft, and destructive attacks, responsible for Sony hack and WannaCry.",
+      "targets": [
+        "Financial",
+        "Cryptocurrency",
+        "Defense",
+        "Technology",
+        "Entertainment"
+      ],
+      "target_regions": [
+        "United States",
+        "South Korea",
+        "Global"
+      ],
+      "ttps": [
+        "Spear-phishing",
+        "Watering holes",
+        "Supply chain attacks",
+        "Cryptocurrency theft"
+      ],
+      "malware": [
+        "Manuscrypt",
+        "Fallchill",
+        "Ratankba",
+        "BLINDINGCAN",
+        "AppleJeus"
+      ],
+      "threat_level": "critical",
+      "active": true
+    },
+    {
+      "id": "platinum",
+      "name": "PLATINUM",
+      "aliases": [
+        "G0068",
+        "ATK 33",
+        "Platinum",
+        "TwoForOne"
+      ],
+      "origin": "China",
+      "origin_coords": [
+        35.86,
+        104.2
+      ],
+      "first_seen": "2009",
+      "description": "China-linked group conducting highly targeted espionage against government and defense entities in South and Southeast Asia.",
+      "targets": [
+        "Government",
+        "Defense",
+        "Intelligence agencies",
+        "Diplomatic"
+      ],
+      "target_regions": [
+        "South Asia",
+        "Southeast Asia"
+      ],
+      "ttps": [
+        "Spear-phishing",
+        "Hot-patching",
+        "Steganography",
+        "Custom frameworks"
+      ],
+      "malware": [
+        "Titanium",
+        "Platinum framework",
+        "Dipsind"
+      ],
+      "threat_level": "critical",
+      "active": true
+    },
+    {
+      "id": "projectsauron",
+      "name": "ProjectSauron",
+      "aliases": [
+        "G0041",
+        "Strider",
+        "Sauron",
+        "APT-C-16"
+      ],
+      "origin": "United States",
+      "origin_coords": [
+        38.9,
+        -77.04
+      ],
+      "first_seen": "2011",
+      "description": "Highly advanced Western intelligence-linked platform (Strider) designed for long-term, stealthy espionage against government networks.",
+      "targets": [
+        "Government",
+        "Military",
+        "Telecommunications",
+        "Financial"
+      ],
+      "target_regions": [
+        "Russia",
+        "Iran",
+        "Rwanda",
+        "Belgium",
+        "China"
+      ],
+      "ttps": [
+        "Air-gap jumping",
+        "Memory-only implants",
+        "One-time encryption keys"
+      ],
+      "malware": [
+        "ProjectSauron",
+        "Remsec"
+      ],
+      "threat_level": "critical",
+      "active": true
+    },
+    {
+      "id": "sandworm",
+      "name": "Sandworm",
+      "aliases": [
+        "Quedagh",
+        "UAC-0113",
+        "TEMP.Noble",
+        "Razing Ursa",
+        "BE2",
+        "TeleBots",
+        "ATK 14",
+        "UAC-0212",
+        "Seashell Blizzard",
+        "CTG-7263",
+        "UAC-0082",
+        "Iron Viking",
+        "Voodoo Bear",
+        "UAC-0133",
+        "Grey Tornado",
+        "IRIDIUM",
+        "Sandworm Team",
+        "Blue Echidna",
+        "UAC-0125",
+        "FROZENBARENTS",
+        "APT44",
+        "APT 44",
+        "UAC-0002"
+      ],
+      "origin": "Russia",
+      "origin_coords": [
+        55.75,
+        37.62
+      ],
+      "first_seen": "2009",
+      "description": "Russian GRU (Unit 74455) destructive threat group responsible for NotPetya, Ukraine power grid attacks, and Olympic Destroyer.",
+      "targets": [
+        "Energy",
+        "Government",
+        "Critical infrastructure",
+        "Elections"
+      ],
+      "target_regions": [
+        "Ukraine",
+        "Europe",
+        "United States"
+      ],
+      "ttps": [
+        "Destructive attacks",
+        "Supply chain compromise",
+        "ICS/SCADA targeting",
+        "Wiper malware"
+      ],
+      "malware": [
+        "NotPetya",
+        "Industroyer",
+        "Olympic Destroyer",
+        "CaddyWiper",
+        "BlackEnergy"
+      ],
+      "threat_level": "critical",
+      "active": true
+    },
+    {
+      "id": "slingshot",
+      "name": "Slingshot",
+      "aliases": [],
+      "origin": "United States",
+      "origin_coords": [
+        38.9,
+        -77.04
+      ],
+      "first_seen": "2012",
+      "description": "US military-linked (JSOC) group that compromised MikroTik routers to conduct surveillance operations in the Middle East and Africa.",
+      "targets": [
+        "Telecommunications",
+        "Government",
+        "Military"
+      ],
+      "target_regions": [
+        "Middle East",
+        "Africa"
+      ],
+      "ttps": [
+        "Router exploitation",
+        "Kernel-level implants",
+        "Multi-layer infection"
+      ],
+      "malware": [
+        "Cahnadr",
+        "GollumApp"
+      ],
+      "threat_level": "critical",
+      "active": true
+    },
+    {
+      "id": "triton",
+      "name": "TRITON",
+      "aliases": [
+        "G0088",
+        "Xenotime",
+        "ATK 91",
+        "TRISIS",
+        "HATMAN",
+        "TEMP.Veles",
+        "XENOTIME"
+      ],
+      "origin": "Russia",
+      "origin_coords": [
+        55.75,
+        37.62
+      ],
+      "first_seen": "2014",
+      "description": "Russian state-linked group (CNIIHM) targeting industrial safety systems, responsible for the TRITON/TRISIS attack on a Saudi petrochemical facility.",
+      "targets": [
+        "Critical infrastructure",
+        "Energy",
+        "Industrial safety systems"
+      ],
+      "target_regions": [
+        "Middle East",
+        "North America"
+      ],
+      "ttps": [
+        "ICS/SCADA attacks",
+        "Safety system manipulation",
+        "Custom ICS malware"
+      ],
+      "malware": [
+        "TRITON",
+        "TRISIS",
+        "HATMAN"
+      ],
+      "threat_level": "critical",
+      "active": true
+    },
+    {
+      "id": "turla",
+      "name": "Turla",
+      "aliases": [
+        "Turla Team",
+        "Turla Group",
+        "Hippo Team",
+        "Uroburos",
+        "WRAITH",
+        "KRYPTON",
+        "Skipper Turla",
+        "Snake",
+        "Waterbug",
+        "WhiteBear",
+        "APT-Q-78",
+        "Venomous Bear",
+        "Pfinet",
+        "TAG_0530",
+        "Secret Blizzard",
+        "Group 88"
+      ],
+      "origin": "Russia",
+      "origin_coords": [
+        55.75,
+        37.62
+      ],
+      "first_seen": "1996",
+      "description": "Russian FSB-linked cyber espionage group known for highly sophisticated operations against government and diplomatic targets since the late 1990s.",
+      "targets": [
+        "Government",
+        "Diplomatic",
+        "Military",
+        "Research"
+      ],
+      "target_regions": [
+        "Europe",
+        "Central Asia",
+        "Middle East"
+      ],
+      "ttps": [
+        "Watering hole attacks",
+        "Satellite-based C2",
+        "Rootkits",
+        "Backdoors"
+      ],
+      "malware": [
+        "Snake",
+        "Carbon",
+        "Kazuar",
+        "ComRAT",
+        "Gazer"
+      ],
+      "threat_level": "critical",
+      "active": true
+    },
+    {
+      "id": "apt-c-44",
+      "name": "APT-C-44",
+      "aliases": [],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "apt-q-13",
+      "name": "APT-Q-13",
+      "aliases": [
+        "APT-C-59"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "apt-q-42",
+      "name": "APT-Q-42",
+      "aliases": [
+        "Tengyun Snake",
+        "APT-C-61"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "apt-q-61",
+      "name": "APT-Q-61",
+      "aliases": [
+        "Prince of Persia",
+        "APT-C-07",
+        "Infy group",
+        "Operation Mermaid",
+        "Infy"
+      ],
+      "origin": "Iran",
+      "origin_coords": [
+        35.69,
+        51.39
+      ],
+      "first_seen": "2007",
+      "description": "Iranian cyber espionage group (Infy/Prince of Persia) conducting long-running surveillance campaigns against Iranian dissidents and regional targets.",
+      "targets": [
+        "Dissidents",
+        "Government",
+        "Diplomatic"
+      ],
+      "target_regions": [
+        "Iran",
+        "Europe",
+        "North America"
+      ],
+      "ttps": [
+        "Spear-phishing",
+        "Custom malware",
+        "Surveillance"
+      ],
+      "malware": [
+        "Infy",
+        "Foudre",
+        "Tonnerre"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "apt-q-98",
+      "name": "APT-Q-98",
+      "aliases": [
+        "APT-C-36",
+        "TAG-144",
+        "G0099",
+        "BlindEagle",
+        "Blind Eagle",
+        "AguilaCiega",
+        "Blind eagle"
+      ],
+      "origin": "Colombia",
+      "origin_coords": [
+        4.57,
+        -74.3
+      ],
+      "first_seen": "2018",
+      "description": "South American group (Blind Eagle) targeting government, financial, and energy sectors primarily in Colombia and Ecuador.",
+      "targets": [
+        "Government",
+        "Financial",
+        "Energy",
+        "Health"
+      ],
+      "target_regions": [
+        "Colombia",
+        "Ecuador",
+        "Chile",
+        "Spain"
+      ],
+      "ttps": [
+        "Spear-phishing",
+        "Commodity RATs",
+        "Phishing kits"
+      ],
+      "malware": [
+        "AsyncRAT",
+        "NjRAT",
+        "QuasarRAT",
+        "LimeRAT"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
       "id": "apt33",
       "name": "APT33",
       "aliases": [
@@ -537,45 +977,6 @@
         "QuietSky"
       ],
       "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "aggah",
-      "name": "Aggah",
-      "aliases": [
-        "Hagga"
-      ],
-      "origin": "Pakistan",
-      "origin_coords": [
-        30.38,
-        69.35
-      ],
-      "first_seen": "2019",
-      "description": "Pakistan-linked group conducting widespread malware campaigns using commodity RATs and public paste sites for C2.",
-      "targets": [
-        "Manufacturing",
-        "Technology",
-        "Financial",
-        "Government"
-      ],
-      "target_regions": [
-        "Middle East",
-        "Europe",
-        "Asia"
-      ],
-      "ttps": [
-        "Spear-phishing",
-        "Macro documents",
-        "Paste site C2",
-        "Commodity RATs"
-      ],
-      "malware": [
-        "RevengeRAT",
-        "NanoCore",
-        "AgentTesla",
-        "AZORult"
-      ],
-      "threat_level": "medium",
       "active": true
     },
     {
@@ -717,65 +1118,6 @@
         "Dracarys"
       ],
       "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "blackenergy",
-      "name": "BlackEnergy",
-      "aliases": [
-        "Koala Team",
-        "Ghost Blizzard",
-        "Electrum",
-        "DragonFly",
-        "Iron Liberty",
-        "DYMALLOY",
-        "Dragonfly2",
-        "TG-4192",
-        "G0035",
-        "Dragonfly",
-        "Havex",
-        "Group 24",
-        "BROMINE",
-        "ATK 6",
-        "Bromine",
-        "Blue Kraken",
-        "Crouching Yeti",
-        "Berserker Bear",
-        "Black Energy",
-        "CrouchingYeti",
-        "ITG15",
-        "Energetic Bear"
-      ],
-      "origin": "Russia",
-      "origin_coords": [
-        55.75,
-        37.62
-      ],
-      "first_seen": "2011",
-      "description": "Russian-linked group known for targeting energy sector and industrial control systems, particularly in Ukraine and Western countries.",
-      "targets": [
-        "Energy",
-        "Industrial control systems",
-        "Government"
-      ],
-      "target_regions": [
-        "Ukraine",
-        "Europe",
-        "United States"
-      ],
-      "ttps": [
-        "ICS/SCADA attacks",
-        "Watering holes",
-        "Spear-phishing",
-        "Supply chain attacks"
-      ],
-      "malware": [
-        "BlackEnergy",
-        "Havex",
-        "Goodor",
-        "Karagany"
-      ],
-      "threat_level": "critical",
       "active": true
     },
     {
@@ -1056,43 +1398,6 @@
       "active": true
     },
     {
-      "id": "dustsquad",
-      "name": "DustSquad",
-      "aliases": [
-        "Nomadic Octopus",
-        "EGoManiac",
-        "Golden Falcon",
-        "APT-C-34",
-        "G0133"
-      ],
-      "origin": "Kazakhstan",
-      "origin_coords": [
-        48.02,
-        66.92
-      ],
-      "first_seen": "2014",
-      "description": "Kazakhstan-linked group targeting Central Asian government and diplomatic entities with custom espionage tools.",
-      "targets": [
-        "Government",
-        "Diplomatic",
-        "Political organizations"
-      ],
-      "target_regions": [
-        "Central Asia"
-      ],
-      "ttps": [
-        "Spear-phishing",
-        "Android malware",
-        "Custom backdoors"
-      ],
-      "malware": [
-        "Octopus",
-        "DustSquad Android implant"
-      ],
-      "threat_level": "medium",
-      "active": true
-    },
-    {
       "id": "el-machete",
       "name": "El Machete",
       "aliases": [
@@ -1130,55 +1435,6 @@
         "Pyark"
       ],
       "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "equation",
-      "name": "Equation",
-      "aliases": [
-        "Platinum Colony",
-        "G0020",
-        "Five Eyes",
-        "Equation Group",
-        "EQGRP",
-        "Tilded Team",
-        "APT-C-40",
-        "NSA"
-      ],
-      "origin": "United States",
-      "origin_coords": [
-        38.9,
-        -77.04
-      ],
-      "first_seen": "2001",
-      "description": "Highly sophisticated US-linked (NSA/TAO) group using advanced firmware-level implants and interdiction capabilities.",
-      "targets": [
-        "Government",
-        "Military",
-        "Telecommunications",
-        "Energy",
-        "Research"
-      ],
-      "target_regions": [
-        "Iran",
-        "Russia",
-        "Pakistan",
-        "Afghanistan",
-        "Global"
-      ],
-      "ttps": [
-        "Firmware implants",
-        "Air-gap jumping",
-        "Zero-day exploits",
-        "Supply chain interdiction"
-      ],
-      "malware": [
-        "EquationDrug",
-        "Fanny",
-        "GrayFish",
-        "DoubleFantasy"
-      ],
-      "threat_level": "critical",
       "active": true
     },
     {
@@ -1274,44 +1530,6 @@
         "PicassoLoader"
       ],
       "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "goldmouse",
-      "name": "Goldmouse",
-      "aliases": [
-        "Golden Rat",
-        "APT-Q-64",
-        "APT-C-27",
-        "ATK 80"
-      ],
-      "origin": "Syria",
-      "origin_coords": [
-        33.51,
-        36.29
-      ],
-      "first_seen": "2017",
-      "description": "Middle Eastern group targeting Arabic-speaking users with mobile surveillance and desktop malware campaigns.",
-      "targets": [
-        "Military",
-        "Government",
-        "Activists"
-      ],
-      "target_regions": [
-        "Middle East",
-        "North Africa"
-      ],
-      "ttps": [
-        "Watering holes",
-        "Social engineering",
-        "Mobile malware"
-      ],
-      "malware": [
-        "SpyNote",
-        "Custom Android RAT",
-        "Golden Rat malware"
-      ],
-      "threat_level": "medium",
       "active": true
     },
     {
@@ -1424,79 +1642,6 @@
       "active": true
     },
     {
-      "id": "hermit",
-      "name": "Hermit",
-      "aliases": [
-        "TA-RedAnt",
-        "Alluring Pisces",
-        "Red Eyes",
-        "Crooked Pisces",
-        "TA444",
-        "TEMP.Reaper",
-        "Opal Sleet",
-        "Reaper",
-        "ATK 4",
-        "APT 37",
-        "Copernicium",
-        "ITG10",
-        "APT 38",
-        "Geumseong121",
-        "Selective Pisces",
-        "TEMP.Hermit",
-        "G0082",
-        "Bluenoroff",
-        "ScarCruft",
-        "Stardust Chollima",
-        "Nickel Gladstone",
-        "Venus 121",
-        "Group 123",
-        "Ricochet Chollima",
-        "CTG-6459",
-        "Sapphire Sleet",
-        "G0067",
-        "T-APT-15",
-        "TAG-71",
-        "Black Alicanto",
-        "Cerium",
-        "Moldy Pisces",
-        "Osmium",
-        "ATK 117",
-        "Ruby Sleet",
-        "InkySquid",
-        "APT38"
-      ],
-      "origin": "North Korea",
-      "origin_coords": [
-        39.02,
-        125.75
-      ],
-      "first_seen": "2009",
-      "description": "North Korean umbrella group encompassing Lazarus-related operations focused on financial theft and espionage across multiple subgroups.",
-      "targets": [
-        "Financial",
-        "Cryptocurrency",
-        "Defense",
-        "Government"
-      ],
-      "target_regions": [
-        "Global",
-        "South Korea",
-        "United States"
-      ],
-      "ttps": [
-        "Spear-phishing",
-        "Supply chain attacks",
-        "Cryptocurrency theft"
-      ],
-      "malware": [
-        "AppleJeus",
-        "TraderTraitor",
-        "BLINDINGCAN"
-      ],
-      "threat_level": "critical",
-      "active": true
-    },
-    {
       "id": "invisimole",
       "name": "InvisiMole",
       "aliases": [],
@@ -1601,65 +1746,6 @@
         "Unknown"
       ],
       "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "lazarus",
-      "name": "Lazarus",
-      "aliases": [
-        "Operation GhostSecret",
-        "Hastati Group",
-        "NewRomanic Cyber Army Team",
-        "Covellite",
-        "APT-C-26",
-        "Nickel Academy",
-        "CTG-2460",
-        "Group 77",
-        "Unit 121",
-        "NICKEL ACADEMY",
-        "ZINC",
-        "Bluenoroff",
-        "Silent Chollima",
-        "Black Artemis",
-        "Bureau 121",
-        "Diamond Sleet",
-        "Guardians of Peace",
-        "Operation Troy",
-        "Lazarus Group"
-      ],
-      "origin": "North Korea",
-      "origin_coords": [
-        39.02,
-        125.75
-      ],
-      "first_seen": "2009",
-      "description": "North Korean state-sponsored group (RGB) conducting espionage, financial theft, and destructive attacks, responsible for Sony hack and WannaCry.",
-      "targets": [
-        "Financial",
-        "Cryptocurrency",
-        "Defense",
-        "Technology",
-        "Entertainment"
-      ],
-      "target_regions": [
-        "United States",
-        "South Korea",
-        "Global"
-      ],
-      "ttps": [
-        "Spear-phishing",
-        "Watering holes",
-        "Supply chain attacks",
-        "Cryptocurrency theft"
-      ],
-      "malware": [
-        "Manuscrypt",
-        "Fallchill",
-        "Ratankba",
-        "BLINDINGCAN",
-        "AppleJeus"
-      ],
-      "threat_level": "critical",
       "active": true
     },
     {
@@ -1866,46 +1952,6 @@
       "active": true
     },
     {
-      "id": "platinum",
-      "name": "PLATINUM",
-      "aliases": [
-        "G0068",
-        "ATK 33",
-        "Platinum",
-        "TwoForOne"
-      ],
-      "origin": "China",
-      "origin_coords": [
-        35.86,
-        104.2
-      ],
-      "first_seen": "2009",
-      "description": "China-linked group conducting highly targeted espionage against government and defense entities in South and Southeast Asia.",
-      "targets": [
-        "Government",
-        "Defense",
-        "Intelligence agencies",
-        "Diplomatic"
-      ],
-      "target_regions": [
-        "South Asia",
-        "Southeast Asia"
-      ],
-      "ttps": [
-        "Spear-phishing",
-        "Hot-patching",
-        "Steganography",
-        "Custom frameworks"
-      ],
-      "malware": [
-        "Titanium",
-        "Platinum framework",
-        "Dipsind"
-      ],
-      "threat_level": "critical",
-      "active": true
-    },
-    {
       "id": "promethium",
       "name": "PROMETHIUM",
       "aliases": [
@@ -2099,47 +2145,6 @@
       "active": true
     },
     {
-      "id": "projectsauron",
-      "name": "ProjectSauron",
-      "aliases": [
-        "G0041",
-        "Strider",
-        "Sauron",
-        "APT-C-16"
-      ],
-      "origin": "United States",
-      "origin_coords": [
-        38.9,
-        -77.04
-      ],
-      "first_seen": "2011",
-      "description": "Highly advanced Western intelligence-linked platform (Strider) designed for long-term, stealthy espionage against government networks.",
-      "targets": [
-        "Government",
-        "Military",
-        "Telecommunications",
-        "Financial"
-      ],
-      "target_regions": [
-        "Russia",
-        "Iran",
-        "Rwanda",
-        "Belgium",
-        "China"
-      ],
-      "ttps": [
-        "Air-gap jumping",
-        "Memory-only implants",
-        "One-time encryption keys"
-      ],
-      "malware": [
-        "ProjectSauron",
-        "Remsec"
-      ],
-      "threat_level": "critical",
-      "active": true
-    },
-    {
       "id": "rusticweb",
       "name": "RusticWeb",
       "aliases": [
@@ -2169,104 +2174,6 @@
         "Rust-based stealers"
       ],
       "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "sandcat",
-      "name": "SandCat",
-      "aliases": [
-        "APT-C-32"
-      ],
-      "origin": "Uzbekistan",
-      "origin_coords": [
-        41.38,
-        64.59
-      ],
-      "first_seen": "2018",
-      "description": "Uzbekistan intelligence-linked group conducting targeted espionage operations using commercial and custom surveillance tools.",
-      "targets": [
-        "Dissidents",
-        "Journalists",
-        "Government",
-        "Foreign diplomats"
-      ],
-      "target_regions": [
-        "Central Asia",
-        "Middle East"
-      ],
-      "ttps": [
-        "Spear-phishing",
-        "Commercial exploit kits",
-        "Surveillance malware"
-      ],
-      "malware": [
-        "Hacking Team tools",
-        "NSO Group tools",
-        "Custom Android implants"
-      ],
-      "threat_level": "medium",
-      "active": true
-    },
-    {
-      "id": "sandworm",
-      "name": "Sandworm",
-      "aliases": [
-        "Quedagh",
-        "UAC-0113",
-        "TEMP.Noble",
-        "Razing Ursa",
-        "BE2",
-        "TeleBots",
-        "ATK 14",
-        "UAC-0212",
-        "Seashell Blizzard",
-        "CTG-7263",
-        "UAC-0082",
-        "Iron Viking",
-        "Voodoo Bear",
-        "UAC-0133",
-        "Grey Tornado",
-        "IRIDIUM",
-        "Sandworm Team",
-        "Blue Echidna",
-        "UAC-0125",
-        "FROZENBARENTS",
-        "APT44",
-        "APT 44",
-        "UAC-0002"
-      ],
-      "origin": "Russia",
-      "origin_coords": [
-        55.75,
-        37.62
-      ],
-      "first_seen": "2009",
-      "description": "Russian GRU (Unit 74455) destructive threat group responsible for NotPetya, Ukraine power grid attacks, and Olympic Destroyer.",
-      "targets": [
-        "Energy",
-        "Government",
-        "Critical infrastructure",
-        "Elections"
-      ],
-      "target_regions": [
-        "Ukraine",
-        "Europe",
-        "United States"
-      ],
-      "ttps": [
-        "Destructive attacks",
-        "Supply chain compromise",
-        "ICS/SCADA targeting",
-        "Wiper malware"
-      ],
-      "malware": [
-        "NotPetya",
-        "Industroyer",
-        "Olympic Destroyer",
-        "CaddyWiper",
-        "BlackEnergy"
-      ],
-      "threat_level": "critical",
       "active": true
     },
     {
@@ -2319,35 +2226,338 @@
       "active": true
     },
     {
-      "id": "slingshot",
-      "name": "Slingshot",
-      "aliases": [],
-      "origin": "United States",
+      "id": "stealth-falcon",
+      "name": "Stealth Falcon",
+      "aliases": [
+        "Project Raven",
+        "FruityArmor",
+        "G0038"
+      ],
+      "origin": "United Arab Emirates",
       "origin_coords": [
-        38.9,
-        -77.04
+        23.42,
+        53.85
       ],
       "first_seen": "2012",
-      "description": "US military-linked (JSOC) group that compromised MikroTik routers to conduct surveillance operations in the Middle East and Africa.",
+      "description": "UAE-linked group (Project Raven) targeting journalists, activists, and dissidents using zero-day exploits and commercial spyware.",
       "targets": [
-        "Telecommunications",
-        "Government",
-        "Military"
+        "Journalists",
+        "Activists",
+        "Dissidents",
+        "Government"
       ],
       "target_regions": [
         "Middle East",
-        "Africa"
+        "United Kingdom",
+        "Global"
       ],
       "ttps": [
-        "Router exploitation",
-        "Kernel-level implants",
-        "Multi-layer infection"
+        "Zero-day exploits",
+        "Commercial spyware",
+        "Social engineering"
       ],
       "malware": [
-        "Cahnadr",
-        "GollumApp"
+        "FruityArmor",
+        "Win32/StealthFalcon"
       ],
-      "threat_level": "critical",
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "wellmess",
+      "name": "WellMess",
+      "aliases": [
+        "APT-C-42"
+      ],
+      "origin": "Russia",
+      "origin_coords": [
+        55.75,
+        37.62
+      ],
+      "first_seen": "2018",
+      "description": "Russia-linked (SVR) group that targeted COVID-19 vaccine research organizations using WellMess and WellMail malware.",
+      "targets": [
+        "Healthcare",
+        "Pharmaceutical",
+        "Research",
+        "Government"
+      ],
+      "target_regions": [
+        "United States",
+        "United Kingdom",
+        "Canada"
+      ],
+      "ttps": [
+        "Spear-phishing",
+        "Vulnerability exploitation",
+        "Custom malware"
+      ],
+      "malware": [
+        "WellMess",
+        "WellMail",
+        "SoreFang"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "zoopark",
+      "name": "ZooPark",
+      "aliases": [
+        "TG-2884",
+        "Cobalt Juno",
+        "APT-Q-66",
+        "Saber Lion",
+        "APT-C-38"
+      ],
+      "origin": "Iran",
+      "origin_coords": [
+        35.69,
+        51.39
+      ],
+      "first_seen": "2015",
+      "description": "Iranian-linked group conducting mobile surveillance campaigns targeting Middle Eastern political figures and activists.",
+      "targets": [
+        "Political figures",
+        "Activists",
+        "Journalists",
+        "Government"
+      ],
+      "target_regions": [
+        "Middle East",
+        "Egypt",
+        "Iran"
+      ],
+      "ttps": [
+        "Watering holes",
+        "Mobile malware",
+        "Fake apps"
+      ],
+      "malware": [
+        "ZooPark Android malware"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "apt-q-67",
+      "name": "APT-Q-67",
+      "aliases": [
+        "APT-C-37",
+        "Pat Bear",
+        "Racquet Bear"
+      ],
+      "origin": "Kazakhstan",
+      "origin_coords": [
+        48.02,
+        66.92
+      ],
+      "first_seen": "2019",
+      "description": "Kazakhstan-linked group conducting cyber espionage operations targeting regional government and diplomatic entities.",
+      "targets": [
+        "Government",
+        "Diplomatic",
+        "NGOs"
+      ],
+      "target_regions": [
+        "Central Asia",
+        "CIS countries"
+      ],
+      "ttps": [
+        "Spear-phishing",
+        "Custom malware"
+      ],
+      "malware": [
+        "Custom backdoors"
+      ],
+      "threat_level": "medium",
+      "active": true
+    },
+    {
+      "id": "apt-q-90",
+      "name": "APT-Q-90",
+      "aliases": [
+        "APT-C-34",
+        "DustSquad",
+        "G0133",
+        "Golden Falcon",
+        "Nomadic Octopus"
+      ],
+      "origin": "Kazakhstan",
+      "origin_coords": [
+        48.02,
+        66.92
+      ],
+      "first_seen": "2014",
+      "description": "Kazakhstan-linked group (overlaps with DustSquad/Nomadic Octopus) targeting government entities in Central Asia.",
+      "targets": [
+        "Government",
+        "Diplomatic",
+        "Political organizations"
+      ],
+      "target_regions": [
+        "Central Asia"
+      ],
+      "ttps": [
+        "Spear-phishing",
+        "Android malware",
+        "Custom backdoors"
+      ],
+      "malware": [
+        "Octopus",
+        "Paperbug"
+      ],
+      "threat_level": "medium",
+      "active": true
+    },
+    {
+      "id": "aggah",
+      "name": "Aggah",
+      "aliases": [
+        "Hagga"
+      ],
+      "origin": "Pakistan",
+      "origin_coords": [
+        30.38,
+        69.35
+      ],
+      "first_seen": "2019",
+      "description": "Pakistan-linked group conducting widespread malware campaigns using commodity RATs and public paste sites for C2.",
+      "targets": [
+        "Manufacturing",
+        "Technology",
+        "Financial",
+        "Government"
+      ],
+      "target_regions": [
+        "Middle East",
+        "Europe",
+        "Asia"
+      ],
+      "ttps": [
+        "Spear-phishing",
+        "Macro documents",
+        "Paste site C2",
+        "Commodity RATs"
+      ],
+      "malware": [
+        "RevengeRAT",
+        "NanoCore",
+        "AgentTesla",
+        "AZORult"
+      ],
+      "threat_level": "medium",
+      "active": true
+    },
+    {
+      "id": "dustsquad",
+      "name": "DustSquad",
+      "aliases": [
+        "Nomadic Octopus",
+        "EGoManiac",
+        "Golden Falcon",
+        "APT-C-34",
+        "G0133"
+      ],
+      "origin": "Kazakhstan",
+      "origin_coords": [
+        48.02,
+        66.92
+      ],
+      "first_seen": "2014",
+      "description": "Kazakhstan-linked group targeting Central Asian government and diplomatic entities with custom espionage tools.",
+      "targets": [
+        "Government",
+        "Diplomatic",
+        "Political organizations"
+      ],
+      "target_regions": [
+        "Central Asia"
+      ],
+      "ttps": [
+        "Spear-phishing",
+        "Android malware",
+        "Custom backdoors"
+      ],
+      "malware": [
+        "Octopus",
+        "DustSquad Android implant"
+      ],
+      "threat_level": "medium",
+      "active": true
+    },
+    {
+      "id": "goldmouse",
+      "name": "Goldmouse",
+      "aliases": [
+        "Golden Rat",
+        "APT-Q-64",
+        "APT-C-27",
+        "ATK 80"
+      ],
+      "origin": "Syria",
+      "origin_coords": [
+        33.51,
+        36.29
+      ],
+      "first_seen": "2017",
+      "description": "Middle Eastern group targeting Arabic-speaking users with mobile surveillance and desktop malware campaigns.",
+      "targets": [
+        "Military",
+        "Government",
+        "Activists"
+      ],
+      "target_regions": [
+        "Middle East",
+        "North Africa"
+      ],
+      "ttps": [
+        "Watering holes",
+        "Social engineering",
+        "Mobile malware"
+      ],
+      "malware": [
+        "SpyNote",
+        "Custom Android RAT",
+        "Golden Rat malware"
+      ],
+      "threat_level": "medium",
+      "active": true
+    },
+    {
+      "id": "sandcat",
+      "name": "SandCat",
+      "aliases": [
+        "APT-C-32"
+      ],
+      "origin": "Uzbekistan",
+      "origin_coords": [
+        41.38,
+        64.59
+      ],
+      "first_seen": "2018",
+      "description": "Uzbekistan intelligence-linked group conducting targeted espionage operations using commercial and custom surveillance tools.",
+      "targets": [
+        "Dissidents",
+        "Journalists",
+        "Government",
+        "Foreign diplomats"
+      ],
+      "target_regions": [
+        "Central Asia",
+        "Middle East"
+      ],
+      "ttps": [
+        "Spear-phishing",
+        "Commercial exploit kits",
+        "Surveillance malware"
+      ],
+      "malware": [
+        "Hacking Team tools",
+        "NSO Group tools",
+        "Custom Android implants"
+      ],
+      "threat_level": "medium",
       "active": true
     },
     {
@@ -2417,177 +2627,6 @@
       "active": true
     },
     {
-      "id": "stealth-falcon",
-      "name": "Stealth Falcon",
-      "aliases": [
-        "Project Raven",
-        "FruityArmor",
-        "G0038"
-      ],
-      "origin": "United Arab Emirates",
-      "origin_coords": [
-        23.42,
-        53.85
-      ],
-      "first_seen": "2012",
-      "description": "UAE-linked group (Project Raven) targeting journalists, activists, and dissidents using zero-day exploits and commercial spyware.",
-      "targets": [
-        "Journalists",
-        "Activists",
-        "Dissidents",
-        "Government"
-      ],
-      "target_regions": [
-        "Middle East",
-        "United Kingdom",
-        "Global"
-      ],
-      "ttps": [
-        "Zero-day exploits",
-        "Commercial spyware",
-        "Social engineering"
-      ],
-      "malware": [
-        "FruityArmor",
-        "Win32/StealthFalcon"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "triton",
-      "name": "TRITON",
-      "aliases": [
-        "G0088",
-        "Xenotime",
-        "ATK 91",
-        "TRISIS",
-        "HATMAN",
-        "TEMP.Veles",
-        "XENOTIME"
-      ],
-      "origin": "Russia",
-      "origin_coords": [
-        55.75,
-        37.62
-      ],
-      "first_seen": "2014",
-      "description": "Russian state-linked group (CNIIHM) targeting industrial safety systems, responsible for the TRITON/TRISIS attack on a Saudi petrochemical facility.",
-      "targets": [
-        "Critical infrastructure",
-        "Energy",
-        "Industrial safety systems"
-      ],
-      "target_regions": [
-        "Middle East",
-        "North America"
-      ],
-      "ttps": [
-        "ICS/SCADA attacks",
-        "Safety system manipulation",
-        "Custom ICS malware"
-      ],
-      "malware": [
-        "TRITON",
-        "TRISIS",
-        "HATMAN"
-      ],
-      "threat_level": "critical",
-      "active": true
-    },
-    {
-      "id": "turla",
-      "name": "Turla",
-      "aliases": [
-        "Turla Team",
-        "Turla Group",
-        "Hippo Team",
-        "Uroburos",
-        "WRAITH",
-        "KRYPTON",
-        "Skipper Turla",
-        "Snake",
-        "Waterbug",
-        "WhiteBear",
-        "APT-Q-78",
-        "Venomous Bear",
-        "Pfinet",
-        "TAG_0530",
-        "Secret Blizzard",
-        "Group 88"
-      ],
-      "origin": "Russia",
-      "origin_coords": [
-        55.75,
-        37.62
-      ],
-      "first_seen": "1996",
-      "description": "Russian FSB-linked cyber espionage group known for highly sophisticated operations against government and diplomatic targets since the late 1990s.",
-      "targets": [
-        "Government",
-        "Diplomatic",
-        "Military",
-        "Research"
-      ],
-      "target_regions": [
-        "Europe",
-        "Central Asia",
-        "Middle East"
-      ],
-      "ttps": [
-        "Watering hole attacks",
-        "Satellite-based C2",
-        "Rootkits",
-        "Backdoors"
-      ],
-      "malware": [
-        "Snake",
-        "Carbon",
-        "Kazuar",
-        "ComRAT",
-        "Gazer"
-      ],
-      "threat_level": "critical",
-      "active": true
-    },
-    {
-      "id": "wellmess",
-      "name": "WellMess",
-      "aliases": [
-        "APT-C-42"
-      ],
-      "origin": "Russia",
-      "origin_coords": [
-        55.75,
-        37.62
-      ],
-      "first_seen": "2018",
-      "description": "Russia-linked (SVR) group that targeted COVID-19 vaccine research organizations using WellMess and WellMail malware.",
-      "targets": [
-        "Healthcare",
-        "Pharmaceutical",
-        "Research",
-        "Government"
-      ],
-      "target_regions": [
-        "United States",
-        "United Kingdom",
-        "Canada"
-      ],
-      "ttps": [
-        "Spear-phishing",
-        "Vulnerability exploitation",
-        "Custom malware"
-      ],
-      "malware": [
-        "WellMess",
-        "WellMail",
-        "SoreFang"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
       "id": "yorotrooper",
       "name": "YoroTrooper",
       "aliases": [
@@ -2623,72 +2662,9 @@
       ],
       "threat_level": "medium",
       "active": true
-    },
-    {
-      "id": "zoopark",
-      "name": "ZooPark",
-      "aliases": [
-        "TG-2884",
-        "Cobalt Juno",
-        "APT-Q-66",
-        "Saber Lion",
-        "APT-C-38"
-      ],
-      "origin": "Iran",
-      "origin_coords": [
-        35.69,
-        51.39
-      ],
-      "first_seen": "2015",
-      "description": "Iranian-linked group conducting mobile surveillance campaigns targeting Middle Eastern political figures and activists.",
-      "targets": [
-        "Political figures",
-        "Activists",
-        "Journalists",
-        "Government"
-      ],
-      "target_regions": [
-        "Middle East",
-        "Egypt",
-        "Iran"
-      ],
-      "ttps": [
-        "Watering holes",
-        "Mobile malware",
-        "Fake apps"
-      ],
-      "malware": [
-        "ZooPark Android malware"
-      ],
-      "threat_level": "high",
-      "active": true
     }
   ],
   "origins": {
-    "Unknown": {
-      "coords": [
-        0,
-        0
-      ],
-      "color": "#888888",
-      "groups_count": 6
-    },
-    "Iran": {
-      "coords": [
-        35.69,
-        51.39
-      ],
-      "color": "#22c55e",
-      "groups_count": 9
-    },
-    "Kazakhstan": {
-      "coords": [
-        48.02,
-        66.92
-      ],
-      "color": "#f97316",
-      "groups_count": 4
-    },
     "United States": {
       "coords": [
         38.9,
@@ -2696,14 +2672,6 @@
       ],
       "color": "#3498db",
       "groups_count": 4
-    },
-    "Colombia": {
-      "coords": [
-        4.57,
-        -74.3
-      ],
-      "color": "#eab308",
-      "groups_count": 1
     },
     "Russia": {
       "coords": [
@@ -2721,13 +2689,37 @@
       "color": "#a855f7",
       "groups_count": 5
     },
-    "Pakistan": {
+    "China": {
       "coords": [
-        30.38,
-        69.35
+        35.86,
+        104.2
       ],
-      "color": "#10b981",
-      "groups_count": 5
+      "color": "#e67e22",
+      "groups_count": 2
+    },
+    "Unknown": {
+      "coords": [
+        0,
+        0
+      ],
+      "color": "#888888",
+      "groups_count": 6
+    },
+    "Iran": {
+      "coords": [
+        35.69,
+        51.39
+      ],
+      "color": "#22c55e",
+      "groups_count": 9
+    },
+    "Colombia": {
+      "coords": [
+        4.57,
+        -74.3
+      ],
+      "color": "#eab308",
+      "groups_count": 1
     },
     "Palestine": {
       "coords": [
@@ -2769,14 +2761,6 @@
       "color": "#d946ef",
       "groups_count": 1
     },
-    "Syria": {
-      "coords": [
-        33.51,
-        36.29
-      ],
-      "color": "#64748b",
-      "groups_count": 1
-    },
     "Vietnam": {
       "coords": [
         21.03,
@@ -2785,13 +2769,13 @@
       "color": "#06b6d4",
       "groups_count": 1
     },
-    "China": {
+    "Pakistan": {
       "coords": [
-        35.86,
-        104.2
+        30.38,
+        69.35
       ],
-      "color": "#e67e22",
-      "groups_count": 2
+      "color": "#10b981",
+      "groups_count": 5
     },
     "Turkey": {
       "coords": [
@@ -2799,6 +2783,30 @@
         32.86
       ],
       "color": "#ec4899",
+      "groups_count": 1
+    },
+    "United Arab Emirates": {
+      "coords": [
+        23.42,
+        53.85
+      ],
+      "color": "#0284c7",
+      "groups_count": 1
+    },
+    "Kazakhstan": {
+      "coords": [
+        48.02,
+        66.92
+      ],
+      "color": "#f97316",
+      "groups_count": 4
+    },
+    "Syria": {
+      "coords": [
+        33.51,
+        36.29
+      ],
+      "color": "#64748b",
       "groups_count": 1
     },
     "Uzbekistan": {
@@ -2815,14 +2823,6 @@
         30.8
       ],
       "color": "#b45309",
-      "groups_count": 1
-    },
-    "United Arab Emirates": {
-      "coords": [
-        23.42,
-        53.85
-      ],
-      "color": "#0284c7",
       "groups_count": 1
     }
   },
