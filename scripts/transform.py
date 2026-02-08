@@ -15,6 +15,7 @@ Response format is {status, message, data} where data holds the payload.
 import glob
 import json
 import os
+import re
 import sys
 from datetime import date
 
@@ -164,6 +165,33 @@ def normalize_country(name):
     return name
 
 
+def is_object_id(s):
+    """Check if a string looks like a MongoDB ObjectID (24-char hex)."""
+    if not isinstance(s, str):
+        return False
+    s = s.strip()
+    return len(s) >= 16 and all(c in '0123456789abcdef' for c in s.lower())
+
+
+def scan_for_country(raw):
+    """Last resort: scan ALL field values for a known country name."""
+    all_known = set(COUNTRY_COORDS.keys()) | set(COUNTRY_ZH_EN.keys())
+    for key, val in raw.items():
+        if key in ("_id", "id", "name"):
+            continue
+        if isinstance(val, str) and val.strip() in all_known:
+            return normalize_country(val.strip())
+        if isinstance(val, dict):
+            for subkey, subval in val.items():
+                if isinstance(subval, str) and subval.strip() in all_known:
+                    return normalize_country(subval.strip())
+        if isinstance(val, list) and val and isinstance(val[0], str):
+            for item in val[:3]:
+                if item.strip() in all_known:
+                    return normalize_country(item.strip())
+    return "Unknown"
+
+
 def slugify(name):
     """Create a safe ID from a group name."""
     return (
@@ -221,35 +249,66 @@ def get_nested(obj, *keys, default=None):
     return default
 
 
-def normalize_group(raw):
+def normalize_group(raw, idx=0):
     """Map a raw QiAnxin record to our standard schema."""
+
+    # ─── Debug: print first record's full structure ──
+    if idx == 0:
+        print(f"\n[*] First record keys: {list(raw.keys())}")
+        for k, v in raw.items():
+            vtype = type(v).__name__
+            sample = str(v)[:120] if v is not None else "null"
+            print(f"    {k} ({vtype}): {sample}")
+        print()
+
+    # ─── Aliases (extract FIRST, needed for name fallback) ──
+    aliases = extract_list(get_nested(
+        raw, "alias", "aliases", "other_names", "aka", "alt_names",
+        "other_name", "nick_name", "nick_names", "otherName",
+    ))
+    cn_name = raw.get("cn_name") or raw.get("cnName")
+
     # ─── Name ────────────────────────────────────────
     name = get_nested(raw, "name", "en_name", "group_name", "apt_name",
-                      "title", "cn_name", default="Unknown")
+                      "title", "cn_name", "display_name", "label",
+                      "en_label", "actor_name", default="Unknown")
     if isinstance(name, dict):
         name = name.get("en") or name.get("cn") or name.get("name") or "Unknown"
     name = str(name).strip()
 
-    # ─── Aliases ─────────────────────────────────────
-    aliases = extract_list(get_nested(
-        raw, "alias", "aliases", "other_names", "aka", "alt_names",
-        "other_name", "nick_name"
-    ))
-    # Also check if cn_name differs from name
-    cn_name = raw.get("cn_name") or raw.get("cnName")
+    # If name looks like a MongoDB ObjectID, use the first alias instead
+    if is_object_id(name) and aliases:
+        name = aliases.pop(0)
+    elif is_object_id(name) and cn_name:
+        name = str(cn_name).strip()
+
+    # Add cn_name to aliases if it differs from name
     if cn_name and str(cn_name).strip() != name:
-        aliases.insert(0, str(cn_name).strip())
+        cn = str(cn_name).strip()
+        if cn not in aliases:
+            aliases.insert(0, cn)
 
     # ─── Origin / Country ────────────────────────────
     origin_raw = get_nested(
         raw, "country", "origin", "region", "source_country",
-        "attribution", "nation", "belong_country"
+        "attribution", "nation", "belong_country",
+        "area", "belong_area", "location", "loc",
+        "source_area", "home_country", "homeland",
+        "from", "nationality", "state", "country_name",
+        "belongCountry", "sourceCountry", "homeCountry",
     )
     if isinstance(origin_raw, list):
         origin_raw = origin_raw[0] if origin_raw else ""
     if isinstance(origin_raw, dict):
-        origin_raw = origin_raw.get("name") or origin_raw.get("en") or origin_raw.get("cn") or ""
+        origin_raw = (origin_raw.get("name") or origin_raw.get("en") or
+                      origin_raw.get("cn") or origin_raw.get("en_name") or
+                      origin_raw.get("cn_name") or origin_raw.get("label") or
+                      origin_raw.get("value") or "")
     origin = normalize_country(str(origin_raw)) if origin_raw else "Unknown"
+
+    # Last resort: scan all fields for a known country value
+    if origin == "Unknown":
+        origin = scan_for_country(raw)
 
     # ─── Coords ──────────────────────────────────────
     coords = COUNTRY_COORDS.get(origin, [0, 0])
@@ -257,13 +316,12 @@ def normalize_group(raw):
     # ─── First seen ──────────────────────────────────
     first_seen_raw = get_nested(
         raw, "first_seen", "start_time", "discovered", "year",
-        "first_activity", "active_since", "begin_time", "earliest_time"
+        "first_activity", "active_since", "begin_time", "earliest_time",
+        "startTime", "firstSeen", "createTime", "create_time",
     )
     first_seen = "Unknown"
     if first_seen_raw:
         s = str(first_seen_raw).strip()
-        # Extract year (first 4 digits)
-        import re
         m = re.search(r'\d{4}', s)
         if m:
             first_seen = m.group(0)
@@ -272,22 +330,23 @@ def normalize_group(raw):
     description = str(get_nested(
         raw, "en_description", "description", "summary", "intro",
         "cn_description", "overview", "brief", "en_intro", "cn_intro",
+        "desc", "enDescription", "cnDescription",
         default=""
     ))
 
     # ─── Targets (sectors) ───────────────────────────
     targets = extract_list(get_nested(
         raw, "target_industry", "targets", "target", "attack_target",
-        "industries", "target_sector", "victim_industry"
+        "industries", "target_sector", "victim_industry",
+        "targetIndustry", "industry",
     ))
 
     # ─── Target regions ──────────────────────────────
     target_regions = extract_list(get_nested(
         raw, "target_area", "target_regions", "target_countries",
         "affected_regions", "victim_country", "target_country",
-        "victim_region"
+        "victim_region", "targetArea", "targetCountry",
     ))
-    # Normalize Chinese region names
     target_regions = [normalize_country(r) or r for r in target_regions]
     if not target_regions:
         target_regions = ["Unknown"]
@@ -295,24 +354,25 @@ def normalize_group(raw):
     # ─── TTPs ────────────────────────────────────────
     ttps = extract_list(get_nested(
         raw, "ttps", "techniques", "attack_methods", "attack_type",
-        "ttp", "attack_technique", "technique"
+        "ttp", "attack_technique", "technique", "attackType",
     ))
 
     # ─── Malware / Tools ─────────────────────────────
     malware = extract_list(get_nested(
         raw, "malware", "tools", "weapons", "malware_families",
-        "tool_list", "weapon", "trojan", "arsenal"
+        "tool_list", "weapon", "trojan", "arsenal",
+        "malwareFamily", "toolList",
     ))
 
     # ─── Threat level ────────────────────────────────
     threat_raw = get_nested(
         raw, "threat_level", "severity", "risk_level",
-        "danger_level", "level"
+        "danger_level", "level", "threatLevel",
     )
     threat_level = map_threat_level(threat_raw)
 
     # ─── Active ──────────────────────────────────────
-    active_raw = get_nested(raw, "active", "is_active", "status")
+    active_raw = get_nested(raw, "active", "is_active", "status", "isActive")
     active = True
     if isinstance(active_raw, bool):
         active = active_raw
@@ -460,8 +520,8 @@ def main():
         records = try_extract_groups(data)
         if records:
             print(f"[+] Extracted {len(records)} records from actor endpoint")
-            for raw in records:
-                group = normalize_group(raw)
+            for i, raw in enumerate(records):
+                group = normalize_group(raw, idx=i)
                 if group["name"] != "Unknown" and group["name"] not in seen_names:
                     seen_names.add(group["name"])
                     all_groups.append(group)
@@ -477,8 +537,8 @@ def main():
             print(f"[+] Found {len(records)} records in map endpoint")
             # If we didn't get actors from the actor endpoint, use map data
             if not all_groups:
-                for raw in records:
-                    group = normalize_group(raw)
+                for i, raw in enumerate(records):
+                    group = normalize_group(raw, idx=i)
                     if group["name"] != "Unknown" and group["name"] not in seen_names:
                         seen_names.add(group["name"])
                         all_groups.append(group)
@@ -486,6 +546,7 @@ def main():
     # ─── Strategy 2: scan ALL dump files ─────────────
     if not all_groups:
         print("[*] Actor/map endpoints didn't yield groups, scanning all files...")
+        count = 0
         for fpath in dump_files:
             fname = os.path.basename(fpath)
             if "global_state" in fname:
@@ -497,7 +558,8 @@ def main():
 
             records = try_extract_groups(data)
             for raw in records:
-                group = normalize_group(raw)
+                group = normalize_group(raw, idx=count)
+                count += 1
                 if group["name"] != "Unknown" and group["name"] not in seen_names:
                     seen_names.add(group["name"])
                     all_groups.append(group)
@@ -531,7 +593,16 @@ def main():
     with open(OUTPUT, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
+    # Summary
+    known = [g for g in all_groups if g["origin"] != "Unknown"]
+    unknown = [g for g in all_groups if g["origin"] == "Unknown"]
+    origins_set = set(g["origin"] for g in all_groups if g["origin"] != "Unknown")
     print(f"[*] Wrote {len(all_groups)} groups to {OUTPUT}")
+    print(f"    {len(known)} with known origin ({len(origins_set)} countries), {len(unknown)} unknown")
+    if unknown:
+        print(f"    Unknown origin groups: {[g['name'] for g in unknown[:10]]}")
+    if origins_set:
+        print(f"    Origins: {sorted(origins_set)}")
 
 
 if __name__ == "__main__":
