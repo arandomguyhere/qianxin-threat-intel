@@ -6,10 +6,11 @@ Run after scrape.py:
     python scripts/transform.py
 
 Targets two specific QiAnxin API endpoints:
-  - /alpha-api/v2/apt-dossier/actor/all  → APT group list
-  - /alpha-api/v2/apt-dossier/map/v2     → map/geo data (merged if available)
+  - /alpha-api/v2/apt-dossier/actor/all  → lightweight actor list (actorName, alias, name, type)
+  - /alpha-api/v2/apt-dossier/map/v2     → map/geo data with country groupings
 
-Response format is {status, message, data} where data holds the payload.
+The actor endpoint is minimal (only name + aliases). Country attribution comes
+from the map endpoint and a built-in known-APT database as fallback.
 """
 
 import glob
@@ -22,7 +23,7 @@ from datetime import date
 DUMP_DIR = os.path.join(os.path.dirname(__file__), "..", "qianxin_apt_dump")
 OUTPUT = os.path.join(os.path.dirname(__file__), "..", "docs", "data", "apt-groups.json")
 
-# ─── Known country coords ───────────────────────────────
+# ─── Known country coords [lat, lon] ─────────────────────
 COUNTRY_COORDS = {
     "Russia": [55.75, 37.62],
     "China": [35.86, 104.20],
@@ -152,6 +153,144 @@ COUNTRY_ZH_EN = {
     "肯尼亚": "Kenya", "摩洛哥": "Morocco", "阿根廷": "Argentina",
 }
 
+# ─── Known APT attributions from public threat intel ─────
+# Keyed by any name or alias (lowercase). Sources: MITRE ATT&CK, QiAnxin naming.
+# QiAnxin uses APT-C-xx (by country) and APT-Q-xx naming conventions.
+KNOWN_APT_ORIGINS = {
+    # ── Russia ──
+    "apt28": "Russia", "apt 28": "Russia", "fancy bear": "Russia",
+    "sofacy": "Russia", "sednit": "Russia", "strontium": "Russia",
+    "pawn storm": "Russia", "snakemackerel": "Russia", "t-apt-12": "Russia",
+    "forest blizzard": "Russia",
+    "apt29": "Russia", "apt 29": "Russia", "cozy bear": "Russia",
+    "the dukes": "Russia", "nobelium": "Russia", "midnight blizzard": "Russia",
+    "seaduke": "Russia", "hammer toss": "Russia", "dukes": "Russia",
+    "turla": "Russia", "turla team": "Russia", "turla group": "Russia",
+    "hippo team": "Russia", "venomous bear": "Russia", "secret blizzard": "Russia",
+    "uroburos": "Russia", "waterbug": "Russia", "snake": "Russia",
+    "sandworm": "Russia", "sandworm team": "Russia", "electrum": "Russia",
+    "voodoo bear": "Russia", "iridium": "Russia", "seashell blizzard": "Russia",
+    "ghost blizzard": "Russia", "koala team": "Russia",
+    "gamaredon": "Russia", "gamaredon group": "Russia", "primitive bear": "Russia",
+    "aqua blizzard": "Russia", "actinium": "Russia", "shuckworm": "Russia",
+    "armageddon": "Russia",
+    "energetic bear": "Russia", "dragonfly": "Russia", "crouching yeti": "Russia",
+    "berserk bear": "Russia",
+    "ember bear": "Russia", "cadet blizzard": "Russia",
+    "star blizzard": "Russia", "callisto": "Russia", "cold river": "Russia",
+    "gossamer bear": "Russia",
+    "apt-c-20": "Russia",
+    # ── China ──
+    "apt1": "China", "apt 1": "China", "comment crew": "China",
+    "comment panda": "China",
+    "apt10": "China", "apt 10": "China", "stone panda": "China",
+    "menupass": "China", "red apollo": "China",
+    "apt41": "China", "apt 41": "China", "double dragon": "China",
+    "wicked panda": "China", "winnti": "China", "barium": "China",
+    "apt3": "China", "apt 3": "China", "gothic panda": "China",
+    "buckeye": "China",
+    "apt40": "China", "apt 40": "China", "leviathan": "China",
+    "kryptonite panda": "China", "gingham typhoon": "China",
+    "apt31": "China", "apt 31": "China", "zirconium": "China",
+    "judgment panda": "China", "violet typhoon": "China",
+    "apt27": "China", "apt 27": "China", "emissary panda": "China",
+    "lucky mouse": "China", "iron tiger": "China",
+    "mustang panda": "China", "bronze president": "China",
+    "stately taurus": "China", "earth preta": "China",
+    "hafnium": "China", "silk typhoon": "China",
+    "volt typhoon": "China", "bronze silhouette": "China",
+    "salt typhoon": "China", "ghost emperor": "China",
+    "flax typhoon": "China", "ethereal panda": "China",
+    "charcoal typhoon": "China",
+    "naikon": "China", "override panda": "China",
+    "lotus panda": "China", "spring dragon": "China",
+    "ke3chang": "China", "vixen panda": "China", "nickel": "China",
+    "gallium": "China",
+    "blacktech": "China", "palmerworm": "China",
+    "tonto team": "China", "cactuspete": "China",
+    "tick": "China", "bronze butler": "China",
+    "apt-c-01": "China", "apt-c-06": "China",
+    "apt-q-12": "China", "apt-q-27": "China", "apt-q-29": "China",
+    "apt-q-31": "China", "apt-q-36": "China", "apt-q-77": "China",
+    "apt-q-78": "China",
+    # ── North Korea ──
+    "lazarus": "North Korea", "lazarus group": "North Korea",
+    "hidden cobra": "North Korea", "labyrinth chollima": "North Korea",
+    "diamond sleet": "North Korea", "zinc": "North Korea",
+    "apt38": "North Korea", "apt 38": "North Korea",
+    "bluenoroff": "North Korea", "stardust chollima": "North Korea",
+    "sapphire sleet": "North Korea",
+    "kimsuky": "North Korea", "velvet chollima": "North Korea",
+    "emerald sleet": "North Korea", "thallium": "North Korea",
+    "black banshee": "North Korea",
+    "andariel": "North Korea", "silent chollima": "North Korea",
+    "onyx sleet": "North Korea", "plutonium": "North Korea",
+    "scarcruft": "North Korea", "scarcraft": "North Korea",
+    "reaper": "North Korea", "ricochet chollima": "North Korea",
+    "ruby sleet": "North Korea", "apt37": "North Korea", "apt 37": "North Korea",
+    "konni": "North Korea",
+    "operation ghostsecret": "North Korea", "hastati group": "North Korea",
+    "newromanic cyber army": "North Korea",
+    "operation dream job": "North Korea",
+    "apt-c-26": "North Korea",
+    "apt-q-11": "North Korea",
+    # ── Iran ──
+    "apt33": "Iran", "apt 33": "Iran", "elfin": "Iran",
+    "refined kitten": "Iran", "peach sandstorm": "Iran",
+    "apt34": "Iran", "apt 34": "Iran", "oilrig": "Iran",
+    "helix kitten": "Iran", "hazel sandstorm": "Iran",
+    "apt35": "Iran", "apt 35": "Iran", "charming kitten": "Iran",
+    "phosphorus": "Iran", "mint sandstorm": "Iran", "newscaster": "Iran",
+    "apt39": "Iran", "apt 39": "Iran", "chafer": "Iran",
+    "remix kitten": "Iran",
+    "apt42": "Iran", "apt 42": "Iran",
+    "muddywater": "Iran", "muddy water": "Iran", "mercury": "Iran",
+    "mango sandstorm": "Iran", "static kitten": "Iran",
+    "cleaver": "Iran", "cutting kitten": "Iran",
+    "cotton sandstorm": "Iran", "crimson sandstorm": "Iran",
+    "lyceum": "Iran", "hexane": "Iran",
+    "agrius": "Iran",
+    "apt-c-34": "Iran",
+    # ── Vietnam ──
+    "apt32": "Vietnam", "apt 32": "Vietnam", "oceanlotus": "Vietnam",
+    "ocean lotus": "Vietnam", "cobalt kitty": "Vietnam",
+    "sectorf01": "Vietnam", "canvas cyclone": "Vietnam",
+    "apt-c-00": "Vietnam", "apt-q-31": "Vietnam",
+    # ── India ──
+    "sidewinder": "India", "rattlesnake": "India", "razor tiger": "India",
+    "apt-c-17": "India", "baby elephant": "India",
+    "patchwork": "India", "dropping elephant": "India",
+    "monsoon": "India", "quilted tiger": "India", "atk 11": "India",
+    "hangover": "India", "operation hangover": "India",
+    "donot": "India", "donot team": "India", "apt-c-35": "India",
+    "origami elephant": "India", "sectore02": "India",
+    "mint tempest": "India", "apt-q-38": "India",
+    "confucius": "India", "apt-c-16": "India",
+    "apt-q-37": "India", "sectore08": "India",
+    # ── Pakistan ──
+    "transparent tribe": "Pakistan", "apt36": "Pakistan", "apt 36": "Pakistan",
+    "mythic leopard": "Pakistan", "copper fieldstone": "Pakistan",
+    "apt-c-56": "Pakistan",
+    "sidecopy": "Pakistan", "apt-c-36": "Pakistan",
+    "rusticweb": "Pakistan", "operation rusticweb": "Pakistan",
+    # ── South Korea ──
+    "darkhotel": "South Korea", "tapaoux": "South Korea",
+    "apt-c-06": "South Korea",
+    # ── United States ──
+    "equation group": "United States", "equation": "United States",
+    "longhorn": "United States", "lamberts": "United States",
+    "apt-c-39": "United States",
+    # ── Israel ──
+    "candiru": "Israel", "sourgum": "Israel",
+    "nso group": "Israel",
+    # ── Lebanon ──
+    "volatile cedar": "Lebanon", "lebanese cedar": "Lebanon",
+    "dark caracal": "Lebanon",
+    # ── Turkey ──
+    "sea turtle": "Turkey",
+    "silicon": "Turkey",
+}
+
 
 def normalize_country(name):
     """Map a country name (possibly Chinese) to English."""
@@ -173,23 +312,19 @@ def is_object_id(s):
     return len(s) >= 16 and all(c in '0123456789abcdef' for c in s.lower())
 
 
-def scan_for_country(raw):
-    """Last resort: scan ALL field values for a known country name."""
-    all_known = set(COUNTRY_COORDS.keys()) | set(COUNTRY_ZH_EN.keys())
-    for key, val in raw.items():
-        if key in ("_id", "id", "name"):
-            continue
-        if isinstance(val, str) and val.strip() in all_known:
-            return normalize_country(val.strip())
-        if isinstance(val, dict):
-            for subkey, subval in val.items():
-                if isinstance(subval, str) and subval.strip() in all_known:
-                    return normalize_country(subval.strip())
-        if isinstance(val, list) and val and isinstance(val[0], str):
-            for item in val[:3]:
-                if item.strip() in all_known:
-                    return normalize_country(item.strip())
-    return "Unknown"
+def lookup_origin(name, aliases):
+    """Look up origin from the known APT database using name and aliases."""
+    candidates = [name] + aliases
+    for candidate in candidates:
+        key = candidate.lower().strip()
+        if key in KNOWN_APT_ORIGINS:
+            return KNOWN_APT_ORIGINS[key]
+        # Try without spaces/hyphens
+        normalized = key.replace("-", "").replace(" ", "")
+        for db_key, country in KNOWN_APT_ORIGINS.items():
+            if db_key.replace("-", "").replace(" ", "") == normalized:
+                return country
+    return None
 
 
 def slugify(name):
@@ -231,8 +366,8 @@ def extract_list(val):
             if isinstance(item, str):
                 result.append(item.strip())
             elif isinstance(item, dict):
-                # Try common sub-keys: name, label, value, title
-                for k in ("name", "label", "value", "title", "en_name", "cn_name"):
+                for k in ("name", "label", "value", "title", "en_name", "cn_name",
+                           "actorName"):
                     if k in item:
                         result.append(str(item[k]).strip())
                         break
@@ -249,129 +384,240 @@ def get_nested(obj, *keys, default=None):
     return default
 
 
-def normalize_group(raw, idx=0):
-    """Map a raw QiAnxin record to our standard schema."""
+def try_extract_groups(data):
+    """Extract group records from a QiAnxin API response."""
+    payload = data
+    if isinstance(data, dict) and "data" in data:
+        payload = data["data"]
 
-    # ─── Debug: print first record's full structure ──
+    if isinstance(payload, list) and len(payload) > 0 and isinstance(payload[0], dict):
+        return payload
+
+    if isinstance(payload, dict):
+        for key in ("list", "items", "records", "results", "groups", "actors"):
+            if isinstance(payload.get(key), list):
+                items = payload[key]
+                if items and isinstance(items[0], dict):
+                    return items
+        for key, val in payload.items():
+            if isinstance(val, list) and len(val) > 3 and isinstance(val[0], dict):
+                return val
+
+    return []
+
+
+def build_map_origin_index(map_file):
+    """
+    Parse the map endpoint to build actor-name → country mapping.
+
+    The map endpoint structure varies, but typically groups actors by country.
+    We try multiple strategies to extract these mappings.
+    """
+    origin_index = {}
+    if not map_file:
+        return origin_index
+
+    print(f"[*] Parsing map endpoint for country data: {os.path.basename(map_file)}")
+    data = load_json(map_file)
+
+    payload = data
+    if isinstance(data, dict) and "data" in data:
+        payload = data["data"]
+
+    # Debug: print the full map structure
+    if isinstance(payload, list):
+        print(f"    map data: list[{len(payload)}]")
+        for i, record in enumerate(payload):
+            if isinstance(record, dict):
+                print(f"    record[{i}] keys: {list(record.keys())}")
+                for k, v in record.items():
+                    vtype = type(v).__name__
+                    if isinstance(v, list):
+                        sample = f"list[{len(v)}]"
+                        if v and isinstance(v[0], dict):
+                            sample += f" first={list(v[0].keys())}"
+                        elif v and isinstance(v[0], str):
+                            sample += f" first={v[0][:50]}"
+                    elif isinstance(v, dict):
+                        sample = f"dict keys={list(v.keys())[:5]}"
+                    else:
+                        sample = str(v)[:80]
+                    print(f"      {k} ({vtype}): {sample}")
+
+                # Try to extract country → actors mapping
+                country_raw = None
+                actors_list = None
+                for ck in ("country", "name", "area", "region", "label",
+                           "countryName", "belong_country"):
+                    if ck in record and isinstance(record[ck], str):
+                        country_raw = record[ck]
+                        break
+
+                for ak in ("actors", "groups", "items", "list", "children",
+                           "actorList", "group_list"):
+                    if ak in record and isinstance(record[ak], list):
+                        actors_list = record[ak]
+                        break
+
+                # If no explicit actors list, check all list values
+                if actors_list is None:
+                    for k, v in record.items():
+                        if isinstance(v, list) and v:
+                            if isinstance(v[0], dict):
+                                actors_list = v
+                                break
+                            elif isinstance(v[0], str) and not is_object_id(v[0]):
+                                actors_list = v
+                                break
+
+                if country_raw and actors_list:
+                    country = normalize_country(country_raw)
+                    if country:
+                        for actor in actors_list:
+                            if isinstance(actor, str):
+                                origin_index[actor.lower().strip()] = country
+                            elif isinstance(actor, dict):
+                                for nk in ("actorName", "name", "actor_name",
+                                           "label", "title"):
+                                    if nk in actor and isinstance(actor[nk], str):
+                                        aname = actor[nk].strip()
+                                        if not is_object_id(aname):
+                                            origin_index[aname.lower()] = country
+                                        break
+
+    elif isinstance(payload, dict):
+        print(f"    map data: dict, keys={list(payload.keys())[:10]}")
+        # The map might be keyed by country name
+        for key, val in payload.items():
+            country = normalize_country(key)
+            if country and country in COUNTRY_COORDS and isinstance(val, (list, dict)):
+                if isinstance(val, list):
+                    for actor in val:
+                        if isinstance(actor, str):
+                            origin_index[actor.lower().strip()] = country
+                        elif isinstance(actor, dict):
+                            for nk in ("actorName", "name"):
+                                if nk in actor:
+                                    origin_index[str(actor[nk]).lower().strip()] = country
+
+    if origin_index:
+        print(f"[+] Built origin index: {len(origin_index)} actor→country mappings")
+    else:
+        print("[!] Could not extract country→actor mappings from map endpoint")
+
+    return origin_index
+
+
+def normalize_actor(raw, map_origins, idx=0):
+    """
+    Map a raw QiAnxin actor record to our standard schema.
+
+    QiAnxin actor/all endpoint returns: {actorName, alias, name (ObjectID), type}
+    Most fields are not available and must come from map endpoint or known DB.
+    """
     if idx == 0:
-        print(f"\n[*] First record keys: {list(raw.keys())}")
+        print(f"\n[*] First actor record keys: {list(raw.keys())}")
         for k, v in raw.items():
             vtype = type(v).__name__
             sample = str(v)[:120] if v is not None else "null"
             print(f"    {k} ({vtype}): {sample}")
         print()
 
-    # ─── Aliases (extract FIRST, needed for name fallback) ──
-    aliases = extract_list(get_nested(
-        raw, "alias", "aliases", "other_names", "aka", "alt_names",
-        "other_name", "nick_name", "nick_names", "otherName",
-    ))
-    cn_name = raw.get("cn_name") or raw.get("cnName")
-
-    # ─── Name ────────────────────────────────────────
-    name = get_nested(raw, "name", "en_name", "group_name", "apt_name",
-                      "title", "cn_name", "display_name", "label",
-                      "en_label", "actor_name", default="Unknown")
-    if isinstance(name, dict):
-        name = name.get("en") or name.get("cn") or name.get("name") or "Unknown"
+    # ─── Name: prefer actorName over name (which is ObjectID) ──
+    name = get_nested(raw, "actorName", "actor_name", "display_name",
+                      "en_name", "label", "title", default=None)
+    if name is None or is_object_id(str(name)):
+        name = raw.get("name", "Unknown")
     name = str(name).strip()
 
-    # If name looks like a MongoDB ObjectID, use the first alias instead
+    # ─── Aliases ──
+    aliases = extract_list(get_nested(
+        raw, "alias", "aliases", "other_names", "aka", "alt_names",
+    ))
+
+    # If name is still an ObjectID, use the first alias
     if is_object_id(name) and aliases:
         name = aliases.pop(0)
-    elif is_object_id(name) and cn_name:
-        name = str(cn_name).strip()
 
-    # Add cn_name to aliases if it differs from name
-    if cn_name and str(cn_name).strip() != name:
-        cn = str(cn_name).strip()
-        if cn not in aliases:
-            aliases.insert(0, cn)
+    # ─── Origin: try map index, then known DB, then field scan ──
+    origin = "Unknown"
 
-    # ─── Origin / Country ────────────────────────────
-    origin_raw = get_nested(
-        raw, "country", "origin", "region", "source_country",
-        "attribution", "nation", "belong_country",
-        "area", "belong_area", "location", "loc",
-        "source_area", "home_country", "homeland",
-        "from", "nationality", "state", "country_name",
-        "belongCountry", "sourceCountry", "homeCountry",
-    )
-    if isinstance(origin_raw, list):
-        origin_raw = origin_raw[0] if origin_raw else ""
-    if isinstance(origin_raw, dict):
-        origin_raw = (origin_raw.get("name") or origin_raw.get("en") or
-                      origin_raw.get("cn") or origin_raw.get("en_name") or
-                      origin_raw.get("cn_name") or origin_raw.get("label") or
-                      origin_raw.get("value") or "")
-    origin = normalize_country(str(origin_raw)) if origin_raw else "Unknown"
+    # 1. Check map endpoint index
+    name_lower = name.lower().strip()
+    if name_lower in map_origins:
+        origin = map_origins[name_lower]
+    else:
+        # Check aliases in map index
+        for alias in aliases:
+            if alias.lower().strip() in map_origins:
+                origin = map_origins[alias.lower().strip()]
+                break
 
-    # Last resort: scan all fields for a known country value
+    # 2. Check known APT database
     if origin == "Unknown":
-        origin = scan_for_country(raw)
+        known = lookup_origin(name, aliases)
+        if known:
+            origin = known
 
-    # ─── Coords ──────────────────────────────────────
+    # 3. Check raw record fields (for enriched endpoints)
+    if origin == "Unknown":
+        origin_raw = get_nested(
+            raw, "country", "origin", "region", "belong_country",
+            "area", "belong_area", "nationality",
+        )
+        if origin_raw:
+            if isinstance(origin_raw, list):
+                origin_raw = origin_raw[0] if origin_raw else ""
+            if isinstance(origin_raw, dict):
+                origin_raw = (origin_raw.get("name") or origin_raw.get("en")
+                              or origin_raw.get("cn") or "")
+            result = normalize_country(str(origin_raw))
+            if result and result in COUNTRY_COORDS:
+                origin = result
+
     coords = COUNTRY_COORDS.get(origin, [0, 0])
 
-    # ─── First seen ──────────────────────────────────
+    # ─── Other fields (mostly unavailable from lightweight endpoint) ──
+    description = str(get_nested(
+        raw, "en_description", "description", "summary", "intro",
+        "desc", default=""
+    ))
+
     first_seen_raw = get_nested(
         raw, "first_seen", "start_time", "discovered", "year",
-        "first_activity", "active_since", "begin_time", "earliest_time",
-        "startTime", "firstSeen", "createTime", "create_time",
+        "firstSeen", "createTime",
     )
     first_seen = "Unknown"
     if first_seen_raw:
-        s = str(first_seen_raw).strip()
-        m = re.search(r'\d{4}', s)
+        m = re.search(r'\d{4}', str(first_seen_raw))
         if m:
             first_seen = m.group(0)
 
-    # ─── Description ─────────────────────────────────
-    description = str(get_nested(
-        raw, "en_description", "description", "summary", "intro",
-        "cn_description", "overview", "brief", "en_intro", "cn_intro",
-        "desc", "enDescription", "cnDescription",
-        default=""
-    ))
-
-    # ─── Targets (sectors) ───────────────────────────
     targets = extract_list(get_nested(
-        raw, "target_industry", "targets", "target", "attack_target",
-        "industries", "target_sector", "victim_industry",
+        raw, "target_industry", "targets", "target",
         "targetIndustry", "industry",
     ))
 
-    # ─── Target regions ──────────────────────────────
     target_regions = extract_list(get_nested(
         raw, "target_area", "target_regions", "target_countries",
-        "affected_regions", "victim_country", "target_country",
-        "victim_region", "targetArea", "targetCountry",
+        "targetArea", "targetCountry",
     ))
     target_regions = [normalize_country(r) or r for r in target_regions]
     if not target_regions:
         target_regions = ["Unknown"]
 
-    # ─── TTPs ────────────────────────────────────────
-    ttps = extract_list(get_nested(
-        raw, "ttps", "techniques", "attack_methods", "attack_type",
-        "ttp", "attack_technique", "technique", "attackType",
-    ))
+    ttps = extract_list(get_nested(raw, "ttps", "techniques", "attack_methods"))
+    malware = extract_list(get_nested(raw, "malware", "tools", "weapons", "arsenal"))
 
-    # ─── Malware / Tools ─────────────────────────────
-    malware = extract_list(get_nested(
-        raw, "malware", "tools", "weapons", "malware_families",
-        "tool_list", "weapon", "trojan", "arsenal",
-        "malwareFamily", "toolList",
-    ))
+    threat_raw = get_nested(raw, "threat_level", "severity", "level", "threatLevel")
+    threat_level = "high"
+    if threat_raw:
+        raw_str = str(threat_raw).lower()
+        if raw_str in ("critical", "severe", "4", "5"):
+            threat_level = "critical"
+        elif raw_str in ("medium", "moderate", "2"):
+            threat_level = "medium"
 
-    # ─── Threat level ────────────────────────────────
-    threat_raw = get_nested(
-        raw, "threat_level", "severity", "risk_level",
-        "danger_level", "level", "threatLevel",
-    )
-    threat_level = map_threat_level(threat_raw)
-
-    # ─── Active ──────────────────────────────────────
     active_raw = get_nested(raw, "active", "is_active", "status", "isActive")
     active = True
     if isinstance(active_raw, bool):
@@ -387,26 +633,13 @@ def normalize_group(raw, idx=0):
         "origin_coords": coords,
         "first_seen": first_seen,
         "description": description,
-        "targets": list(dict.fromkeys(targets)) or ["Unknown"],
+        "targets": targets or ["Unknown"],
         "target_regions": list(dict.fromkeys(target_regions)),
-        "ttps": list(dict.fromkeys(ttps)) or ["Unknown"],
-        "malware": list(dict.fromkeys(malware)) or ["Unknown"],
+        "ttps": ttps or ["Unknown"],
+        "malware": malware or ["Unknown"],
         "threat_level": threat_level,
         "active": active,
     }
-
-
-def map_threat_level(raw):
-    if not raw:
-        return "high"
-    raw = str(raw).lower()
-    if raw in ("critical", "severe", "4", "5"):
-        return "critical"
-    if raw in ("high", "3"):
-        return "high"
-    if raw in ("medium", "moderate", "2"):
-        return "medium"
-    return "high"
 
 
 def build_origins(groups):
@@ -423,81 +656,6 @@ def build_origins(groups):
     return origins
 
 
-def try_extract_groups(data):
-    """
-    Try to extract group records from a QiAnxin API response.
-    Handles: {status, message, data: [...]}, {status, message, data: {items: [...]}}, etc.
-    """
-    payload = data
-    # Unwrap {status, message, data} envelope
-    if isinstance(data, dict) and "data" in data:
-        payload = data["data"]
-
-    # payload is a list of records
-    if isinstance(payload, list) and len(payload) > 0 and isinstance(payload[0], dict):
-        return payload
-
-    # payload is a dict with a list inside
-    if isinstance(payload, dict):
-        for key in ("list", "items", "records", "results", "groups", "actors"):
-            if isinstance(payload.get(key), list):
-                items = payload[key]
-                if items and isinstance(items[0], dict):
-                    return items
-        # Try any list value
-        for key, val in payload.items():
-            if isinstance(val, list) and len(val) > 3 and isinstance(val[0], dict):
-                return val
-
-    return []
-
-
-def dump_debug(dump_files):
-    """Print detailed structure info for debugging."""
-    print("\n[*] Dump file analysis:")
-    for fpath in dump_files:
-        fname = os.path.basename(fpath)
-        try:
-            data = load_json(fpath)
-        except Exception:
-            continue
-
-        if isinstance(data, dict) and "data" in data:
-            payload = data["data"]
-            if isinstance(payload, list):
-                print(f"\n  {fname}")
-                print(f"    data: list[{len(payload)}]")
-                if payload and isinstance(payload[0], dict):
-                    print(f"    first record keys: {list(payload[0].keys())}")
-                    # Show sample values for first record
-                    for k, v in payload[0].items():
-                        sample = str(v)[:80] if v is not None else "null"
-                        print(f"      {k}: {sample}")
-            elif isinstance(payload, dict):
-                print(f"\n  {fname}")
-                print(f"    data: dict, keys={list(payload.keys())[:10]}")
-                for k, v in payload.items():
-                    if isinstance(v, list):
-                        print(f"      {k}: list[{len(v)}]")
-                        if v and isinstance(v[0], dict):
-                            print(f"        first item keys: {list(v[0].keys())}")
-                    elif isinstance(v, dict):
-                        print(f"      {k}: dict, keys={list(v.keys())[:8]}")
-                    else:
-                        print(f"      {k}: {str(v)[:60]}")
-            else:
-                print(f"\n  {fname}")
-                print(f"    data: {type(payload).__name__} = {str(payload)[:80]}")
-        elif isinstance(data, list):
-            print(f"\n  {fname}")
-            print(f"    list[{len(data)}]")
-            if data and isinstance(data[0], dict):
-                print(f"    first item keys: {list(data[0].keys())[:10]}")
-        elif isinstance(data, dict):
-            print(f"\n  {fname}")
-            print(f"    keys: {list(data.keys())[:10]}")
-
-
 def main():
     dump_files = sorted(glob.glob(os.path.join(DUMP_DIR, "*.json")))
 
@@ -508,11 +666,41 @@ def main():
 
     print(f"[*] Scanning {len(dump_files)} dump files...")
 
-    # ─── Strategy 1: target known QiAnxin endpoints ──
+    # ─── Step 1: Build origin index from map endpoint ────
+    map_file = find_file("apt-dossier_map")
+    map_origins = build_map_origin_index(map_file)
+
+    # ─── Step 2: Load per-actor detail files (from enhanced scraper) ──
+    actor_details = {}  # actorName → detail record
+    detail_files = sorted(glob.glob(os.path.join(DUMP_DIR, "actor_*.json")))
+    if detail_files:
+        print(f"[*] Found {len(detail_files)} actor detail files")
+        for fpath in detail_files:
+            try:
+                data = load_json(fpath)
+                payload = data.get("data", data) if isinstance(data, dict) else data
+                if isinstance(payload, dict):
+                    # Print first detail file structure for debugging
+                    if not actor_details:
+                        print(f"[*] First detail record keys: {list(payload.keys())}")
+                        for k, v in payload.items():
+                            vtype = type(v).__name__
+                            sample = str(v)[:100] if v is not None else "null"
+                            print(f"    {k} ({vtype}): {sample}")
+                    # Index by actorName or name
+                    aname = payload.get("actorName") or payload.get("name") or ""
+                    if aname and not is_object_id(str(aname)):
+                        actor_details[str(aname).lower().strip()] = payload
+            except Exception:
+                continue
+        print(f"[+] Loaded {len(actor_details)} actor detail records")
+    else:
+        print("[*] No actor detail files found (scraper may not have captured them)")
+
+    # ─── Step 3: Process actors ──────────────────────────
     all_groups = []
     seen_names = set()
 
-    # Primary: actor/all endpoint (the main group list)
     actor_file = find_file("apt-dossier_actor_all")
     if actor_file:
         print(f"[*] Found actor list: {os.path.basename(actor_file)}")
@@ -521,31 +709,27 @@ def main():
         if records:
             print(f"[+] Extracted {len(records)} records from actor endpoint")
             for i, raw in enumerate(records):
-                group = normalize_group(raw, idx=i)
+                # Merge detail data if available
+                aname = raw.get("actorName", "").lower().strip()
+                if aname in actor_details:
+                    detail = actor_details[aname]
+                    # Merge detail fields into raw (detail takes precedence for new fields)
+                    merged = dict(raw)
+                    for k, v in detail.items():
+                        if k not in merged or merged[k] is None or merged[k] == "":
+                            merged[k] = v
+                        elif k not in ("name", "actorName", "alias", "type"):
+                            merged[k] = v  # Detail has richer data
+                    raw = merged
+
+                group = normalize_actor(raw, map_origins, idx=i)
                 if group["name"] != "Unknown" and group["name"] not in seen_names:
                     seen_names.add(group["name"])
                     all_groups.append(group)
 
-    # Secondary: map endpoint (may have geo data to merge)
-    map_file = find_file("apt-dossier_map")
-    map_data = {}
-    if map_file:
-        print(f"[*] Found map data: {os.path.basename(map_file)}")
-        data = load_json(map_file)
-        records = try_extract_groups(data)
-        if records:
-            print(f"[+] Found {len(records)} records in map endpoint")
-            # If we didn't get actors from the actor endpoint, use map data
-            if not all_groups:
-                for i, raw in enumerate(records):
-                    group = normalize_group(raw, idx=i)
-                    if group["name"] != "Unknown" and group["name"] not in seen_names:
-                        seen_names.add(group["name"])
-                        all_groups.append(group)
-
-    # ─── Strategy 2: scan ALL dump files ─────────────
+    # ─── Step 4: Fallback - scan all dump files ──────────
     if not all_groups:
-        print("[*] Actor/map endpoints didn't yield groups, scanning all files...")
+        print("[*] Actor endpoint didn't yield groups, scanning all files...")
         count = 0
         for fpath in dump_files:
             fname = os.path.basename(fpath)
@@ -555,26 +739,21 @@ def main():
                 data = load_json(fpath)
             except Exception:
                 continue
-
             records = try_extract_groups(data)
             for raw in records:
-                group = normalize_group(raw, idx=count)
+                group = normalize_actor(raw, map_origins, idx=count)
                 count += 1
                 if group["name"] != "Unknown" and group["name"] not in seen_names:
                     seen_names.add(group["name"])
                     all_groups.append(group)
-
         if all_groups:
             print(f"[+] Found {len(all_groups)} groups from general scan")
 
-    # ─── No data found ───────────────────────────────
     if not all_groups:
-        print("[!] No APT group data detected in any dump file.")
-        print("[!] Keeping existing apt-groups.json unchanged.")
-        dump_debug(dump_files)
+        print("[!] No APT group data detected. Keeping existing file.")
         sys.exit(0)
 
-    # ─── Sort and write ──────────────────────────────
+    # ─── Sort and write ──────────────────────────────────
     order = {"critical": 0, "high": 1, "medium": 2}
     all_groups.sort(key=lambda g: (order.get(g["threat_level"], 3), g["name"]))
 
@@ -597,12 +776,13 @@ def main():
     known = [g for g in all_groups if g["origin"] != "Unknown"]
     unknown = [g for g in all_groups if g["origin"] == "Unknown"]
     origins_set = set(g["origin"] for g in all_groups if g["origin"] != "Unknown")
-    print(f"[*] Wrote {len(all_groups)} groups to {OUTPUT}")
-    print(f"    {len(known)} with known origin ({len(origins_set)} countries), {len(unknown)} unknown")
-    if unknown:
-        print(f"    Unknown origin groups: {[g['name'] for g in unknown[:10]]}")
+    print(f"\n[*] Wrote {len(all_groups)} groups to {OUTPUT}")
+    print(f"    {len(known)} with known origin ({len(origins_set)} countries), "
+          f"{len(unknown)} unknown")
     if origins_set:
         print(f"    Origins: {sorted(origins_set)}")
+    if unknown:
+        print(f"    Unresolved: {[g['name'] for g in unknown[:15]]}")
 
 
 if __name__ == "__main__":
