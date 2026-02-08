@@ -6,7 +6,14 @@ const ORIGIN_COLORS = {
   'Iran': '#22c55e',
   'United States': '#3498db',
   'Vietnam': '#06b6d4',
-  'India': '#f39c12'
+  'India': '#f39c12',
+  'Pakistan': '#10b981',
+  'South Korea': '#6366f1',
+  'Israel': '#0ea5e9',
+  'Turkey': '#ec4899',
+  'Lebanon': '#84cc16',
+  'Palestine': '#84cc16',
+  'Gaza': '#84cc16'
 };
 
 const THREAT_COLORS = {
@@ -22,7 +29,14 @@ const COUNTRY_NAME_MAP = {
   'Iran': 'Iran',
   'United States': 'United States of America',
   'Vietnam': 'Vietnam',
-  'India': 'India'
+  'India': 'India',
+  'Pakistan': 'Pakistan',
+  'South Korea': 'Korea',
+  'Israel': 'Israel',
+  'Turkey': 'Turkey',
+  'Lebanon': 'Lebanon',
+  'Palestine': 'Palestine',
+  'Gaza': 'Gaza'
 };
 
 // Region centroids for drawing attack arcs
@@ -193,8 +207,11 @@ function renderMarkers(layer) {
     const color = ORIGIN_COLORS[origin] || '#888';
 
     oGroups.forEach((group, i) => {
-      // Offset groups from same origin so they don't stack
+      // Skip groups with no known origin (coords [0,0]) — they're still in the sidebar
       const baseCoords = group.origin_coords;
+      if (baseCoords[0] === 0 && baseCoords[1] === 0) return;
+
+      // Offset groups from same origin so they don't stack
       const angle = (i / oGroups.length) * Math.PI * 2;
       const spread = oGroups.length > 1 ? 3 + i * 1.2 : 0;
       const lon = baseCoords[1] + Math.cos(angle) * spread;
@@ -288,6 +305,9 @@ function renderArcs(layer) {
   const groups = aptData.apt_groups;
 
   groups.forEach(group => {
+    // Skip groups with no known origin
+    if (group.origin_coords[0] === 0 && group.origin_coords[1] === 0) return;
+
     const color = ORIGIN_COLORS[group.origin] || '#888';
     const originLon = group.origin_coords[1];
     const originLat = group.origin_coords[0];
