@@ -1,993 +1,6 @@
 {
   "apt_groups": [
     {
-      "id": "5aa0eed8d70a3f07e3f73891",
-      "name": "5aa0eed8d70a3f07e3f73891",
-      "aliases": [
-        "Cobalt Kitty",
-        "APT 32",
-        "SectorF01",
-        "Lotus Bane",
-        "ATK 17",
-        "Canvas Cyclone",
-        "APT-C-00",
-        "Ocean Buffalo",
-        "APT-LY-100",
-        "Pond Loach",
-        "BISMUTH",
-        "Tin Woodlawn",
-        "APT32",
-        "Bismuth",
-        "G0050",
-        "SeaLotus"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5aa10b90d70a3f2810c4d3c5",
-      "name": "5aa10b90d70a3f2810c4d3c5",
-      "aliases": [
-        "MONSOON",
-        "ATK 11",
-        "Quilted Tiger",
-        "Chinastrats",
-        "Maha Grass",
-        "Viceroy Tiger",
-        "Operation HangOver",
-        "Monsoon",
-        "Hangover",
-        "G0042",
-        "G0040",
-        "Sarit",
-        "TG-4410",
-        "APT-C-09",
-        "Capricorn Organisation",
-        "Dropping Elephant",
-        "Thirsty Gemini",
-        "Neon",
-        "APT-Q-36",
-        "Zinc Emerson"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5aaa4e8dd70a3f288fde5d18",
-      "name": "5aaa4e8dd70a3f288fde5d18",
-      "aliases": [
-        "Operation GhostSecret",
-        "Hastati Group",
-        "NewRomanic Cyber Army Team",
-        "Covellite",
-        "APT-C-26",
-        "Nickel Academy",
-        "CTG-2460",
-        "Group 77",
-        "Unit 121",
-        "NICKEL ACADEMY",
-        "ZINC",
-        "Bluenoroff",
-        "Silent Chollima",
-        "Black Artemis",
-        "Bureau 121",
-        "Diamond Sleet",
-        "Guardians of Peace",
-        "Operation Troy",
-        "Lazarus Group"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5abb5e5fd70a3f0ff0c896f1",
-      "name": "5abb5e5fd70a3f0ff0c896f1",
-      "aliases": [
-        "APT 28",
-        "Snakemackerel",
-        "T-APT-12",
-        "Blue Athena",
-        "ITG05",
-        "Threat Group-4127",
-        "Swallowtail",
-        "Fighting Ursa",
-        "SIG40",
-        "Strontium",
-        "SNAKEMACKEREL",
-        "TA422",
-        "STRONTIUM",
-        "Sofacy Group",
-        "Sofacy",
-        "UAC-0063",
-        "TAG_0700",
-        "Tsar Team",
-        "Pawn Storm",
-        "FROZENLAKE",
-        "Fancy Bear",
-        "Grizzly Steppe",
-        "Sednit",
-        "GruesomeLarch",
-        "GRIZZLY STEPPE",
-        "Group 74",
-        "Grey-Cloud",
-        "TAG-0700",
-        "TAG-110",
-        "ATK 5",
-        "Iron Twilight",
-        "BlueDelta",
-        "Forest Blizzard",
-        "UAC-0028",
-        "TG-4127",
-        "APT-C-20"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5acb295f596a10001a1a9793",
-      "name": "5acb295f596a10001a1a9793",
-      "aliases": [
-        "SeaDuke",
-        "Hammer Toss",
-        "Dukes",
-        "Office Monkeys",
-        "Minidionis",
-        "CozyDuke",
-        "Cozer",
-        "Cozy Duke",
-        "OfficeMonkeys",
-        "Cozy Bear",
-        "Nobelium",
-        "The Dukes",
-        "Group 100",
-        "UNC2452",
-        "CozyCar",
-        "CozyBear",
-        "EuroAPT",
-        "NOBELIUM",
-        "Midnight Blizzard"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5acb29d0596a10001a1a9794",
-      "name": "5acb29d0596a10001a1a9794",
-      "aliases": [
-        "Turla Team",
-        "Turla Group",
-        "Hippo Team",
-        "Uroburos",
-        "WRAITH",
-        "KRYPTON",
-        "Skipper Turla",
-        "Snake",
-        "Waterbug",
-        "WhiteBear",
-        "APT-Q-78",
-        "Venomous Bear",
-        "Pfinet",
-        "TAG_0530",
-        "Secret Blizzard",
-        "Group 88"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5acb2a0a596a10001642885b",
-      "name": "5acb2a0a596a10001642885b",
-      "aliases": [
-        "Koala Team",
-        "Ghost Blizzard",
-        "Electrum",
-        "DragonFly",
-        "Iron Liberty",
-        "DYMALLOY",
-        "Dragonfly2",
-        "TG-4192",
-        "G0035",
-        "Dragonfly",
-        "Havex",
-        "Group 24",
-        "BROMINE",
-        "ATK 6",
-        "Bromine",
-        "Blue Kraken",
-        "Crouching Yeti",
-        "Berserker Bear",
-        "Black Energy",
-        "CrouchingYeti",
-        "ITG15",
-        "Energetic Bear"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5acb2add596a100015e5df0f",
-      "name": "5acb2add596a100015e5df0f",
-      "aliases": [
-        "GreenSpot",
-        "APT-C-01",
-        "APT-Q-20"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5acb2b01596a100021a3089e",
-      "name": "5acb2b01596a100021a3089e",
-      "aliases": [
-        "Purple Pygmy",
-        "Inexsmar",
-        "TieOnJoe",
-        "Luder",
-        "Fallout Team",
-        "Tapaoux",
-        "Nemim",
-        "Zigzag Hail",
-        "APT-C-06",
-        "Karba",
-        "DUBNIUM"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5acb2b6b596a10001a1a9795",
-      "name": "5acb2b6b596a10001a1a9795",
-      "aliases": [
-        "APT-C-12"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5acb2b8e596a10001a1a9796",
-      "name": "5acb2b8e596a10001a1a9796",
-      "aliases": [
-        "G0041",
-        "Strider",
-        "Sauron",
-        "APT-C-16"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5acb2bd9596a10001a1a9797",
-      "name": "5acb2bd9596a10001a1a9797",
-      "aliases": [
-        "APT-C-08",
-        "BITTER",
-        "APT-Q-37",
-        "TA397",
-        "T-APT-17",
-        "G1002"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5acc5730596a10001ca81c3b",
-      "name": "5acc5730596a10001ca81c3b",
-      "aliases": [
-        "Venus 121",
-        "APT37",
-        "Opal Sleet",
-        "Operation Erebus",
-        "TA-RedAnt",
-        "ATK 4",
-        "Hermit",
-        "Cerium",
-        "Red Eyes",
-        "Crooked Pisces",
-        "Osmium",
-        "Ricochet Chollima",
-        "TEMP.Reaper",
-        "sun team",
-        "G0067",
-        "Reaper",
-        "Venus121",
-        "ScarCruft",
-        "ITG10",
-        "APT-S-008",
-        "Operation Daybreak",
-        "Reaper group",
-        "Scarcruft",
-        "Ruby Sleet",
-        "Squid Werewolf",
-        "Geumseong121",
-        "StarCruft",
-        "APT 37",
-        "InkySquid",
-        "Group 123",
-        "Moldy Pisces"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b0d2e66596a10001cde7c79",
-      "name": "5b0d2e66596a10001cde7c79",
-      "aliases": [
-        "APT-Q-54",
-        "TEMP.Zagros",
-        "Boggy Serpens",
-        "MERCURY",
-        "Static Kitten",
-        "Seedworm",
-        "Mercury",
-        "Cobalt Ulster"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b2337fb596a10001e0dd745",
-      "name": "5b2337fb596a10001e0dd745",
-      "aliases": [
-        "G0088",
-        "Xenotime",
-        "ATK 91",
-        "TRISIS",
-        "HATMAN",
-        "TEMP.Veles",
-        "XENOTIME"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b236107596a10001e0dd77a",
-      "name": "5b236107596a10001e0dd77a",
-      "aliases": [
-        "Parastoo",
-        "iKittens",
-        "Rocket Kitten",
-        "Group 83",
-        "Newsbeef",
-        "Storm-0270",
-        "TA453",
-        "DEV-0270",
-        "NewsBeef",
-        "Newscaster",
-        "Charming Kitten"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b236123596a10001e0dd77b",
-      "name": "5b236123596a10001e0dd77b",
-      "aliases": [
-        "Elfin",
-        "Refined Kitten",
-        "Peach Sandstorm",
-        "MAGNALLIUM",
-        "G0064",
-        "HOLMIUM",
-        "Holmium"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b2362ad596a10001e0dd77d",
-      "name": "5b2362ad596a10001e0dd77d",
-      "aliases": [
-        "Transparent Tribe",
-        "STEPPY-KAVACH",
-        "Earth Karkaddan",
-        "Mythic Leopard",
-        "APT 36",
-        "Opaque Draco",
-        "Operation C-Major",
-        "TEMP.Lapis",
-        "Storm-0156",
-        "Copper Fieldstone",
-        "APT-C-56",
-        "Barmanou",
-        "SideCopy",
-        "G0134",
-        "Side Copy",
-        "APT36",
-        "Green Havildar",
-        "C-Major"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b2363f5596a1000192dbca4",
-      "name": "5b2363f5596a1000192dbca4",
-      "aliases": [
-        "Yellow Maero",
-        "PIPEFISH",
-        "Cobalt Gypsy",
-        "Greenbug",
-        "Storm-0861",
-        "ITG13",
-        "Evasive Serpens",
-        "Helix Kitten",
-        "ATK 40",
-        "Twisted Kitten",
-        "IRN2",
-        "Volatile Kitten",
-        "Chrysene",
-        "Shamoon 2",
-        "EUROPIUM",
-        "Earth Simnavaz",
-        "Hazel Sandstorm",
-        "Scarred Manticore",
-        "TA452",
-        "DEV-0861",
-        "UNC1860",
-        "Crambus",
-        "APT 34"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b2364f5596a10001e0dd77e",
-      "name": "5b2364f5596a10001e0dd77e",
-      "aliases": [
-        "Phosphorus",
-        "Mint Sandstorm",
-        "PHOSPHORUS",
-        "Newscaster Team",
-        "APT 35"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b2376bf596a1000192dbcd2",
-      "name": "5b2376bf596a1000192dbcd2",
-      "aliases": [
-        "Renegade Jackal",
-        "APT-Q-63",
-        "ATK 66",
-        "Mantis",
-        "Niobium",
-        "BigBang",
-        "Pinstripe Lightning",
-        "APT-C-23",
-        "Desert Falcons",
-        "DESERTVARNISH",
-        "TAG-CT1",
-        "Arid Viper",
-        "TAG-63",
-        "Scimitar",
-        "Two-tailed Scorpion",
-        "UNC718",
-        "Big Bang"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b23870a596a10001864aa6b",
-      "name": "5b23870a596a10001864aa6b",
-      "aliases": [
-        "APT-C-15",
-        "APT-Q-62"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b23929a596a100021ae8abc",
-      "name": "5b23929a596a100021ae8abc",
-      "aliases": [
-        "Prince of Persia",
-        "APT-C-07",
-        "Infy group",
-        "Operation Mermaid",
-        "Infy"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b239927596a10001bf44927",
-      "name": "5b239927596a10001bf44927",
-      "aliases": [
-        "Golden Rat",
-        "APT-Q-64",
-        "APT-C-27",
-        "ATK 80"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b2b5e48596a1000100df225",
-      "name": "5b2b5e48596a1000100df225",
-      "aliases": [
-        "G0070"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
       "id": "5b2b7f65596a10001c2e5408",
       "name": "5b2b7f65596a10001c2e5408",
       "aliases": [],
@@ -1014,796 +27,9 @@
       "active": true
     },
     {
-      "id": "5b2c7065596a10000e5f56ec",
-      "name": "5b2c7065596a10000e5f56ec",
-      "aliases": [
-        "HN2",
-        "Rattlesnake",
-        "APT-Q-39",
-        "GroupA21",
-        "Hardcore Nationalist",
-        "SideWinder",
-        "T-APT-04",
-        "BabyElephant",
-        "APT-C-17",
-        "Razor Tiger"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b399d42596a10000ffcba7a",
-      "name": "5b399d42596a10000ffcba7a",
-      "aliases": [
-        "Platinum Colony",
-        "G0020",
-        "Five Eyes",
-        "Equation Group",
-        "EQGRP",
-        "Tilded Team",
-        "APT-C-40",
-        "NSA"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b39cb04596a10000ffcba85",
-      "name": "5b39cb04596a10000ffcba85",
-      "aliases": [
-        "Promethium",
-        "StrongPity",
-        "APT-C-41",
-        "G0056",
-        "Magenta Dust"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b39cc07596a10000d836a5f",
-      "name": "5b39cc07596a10000d836a5f",
-      "aliases": [
-        "Quedagh",
-        "UAC-0113",
-        "TEMP.Noble",
-        "Razing Ursa",
-        "BE2",
-        "TeleBots",
-        "ATK 14",
-        "UAC-0212",
-        "Seashell Blizzard",
-        "CTG-7263",
-        "UAC-0082",
-        "Iron Viking",
-        "Voodoo Bear",
-        "UAC-0133",
-        "Grey Tornado",
-        "IRIDIUM",
-        "Sandworm Team",
-        "Blue Echidna",
-        "UAC-0125",
-        "FROZENBARENTS",
-        "APT44",
-        "APT 44",
-        "UAC-0002"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b3ed6b8596a10001bf0e183",
-      "name": "5b3ed6b8596a10001bf0e183",
-      "aliases": [
-        "Shuckworm",
-        "Primitive Bear",
-        "APT-C-53",
-        "Aqua Blizzard",
-        "Winterflounder",
-        "Armageddon",
-        "SectorC08",
-        "Hive0051",
-        "Iron Tilden",
-        "UNC530",
-        "ACTINIUM",
-        "Gamaredon Group"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b3f2c5e596a10001ffa2ca9",
-      "name": "5b3f2c5e596a10001ffa2ca9",
-      "aliases": [
-        "G0068",
-        "ATK 33",
-        "Platinum",
-        "TwoForOne"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b3f3908596a10001ffa2caa",
-      "name": "5b3f3908596a10001ffa2caa",
-      "aliases": [
-        "Project Raven",
-        "FruityArmor",
-        "G0038"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b45758d596a10001ffa2d3a",
-      "name": "5b45758d596a10001ffa2d3a",
-      "aliases": [
-        "Black Banshee",
-        "Smoke Screen",
-        "Emerald Sleet",
-        "Velvet Chollima",
-        "Thallium",
-        "Kimsuki",
-        "Sparkling Pisces",
-        "THALLIUM",
-        "Mystery Baby",
-        "Baby Coin"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b555624596a10001f70e320",
-      "name": "5b555624596a10001f70e320",
-      "aliases": [
-        "Mint Tempest",
-        "Origami Elephant",
-        "SectorE02",
-        "Donot Team",
-        "APT-C-35",
-        "APT-Q-38"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b5fcaf5596a10000cb9baad",
-      "name": "5b5fcaf5596a10000cb9baad",
-      "aliases": [
-        "G0142"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b850015596a10001566e30a",
-      "name": "5b850015596a10001566e30a",
-      "aliases": [
-        "G0095",
-        "APT-Q-99",
-        "Machete",
-        "APT-C-43"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5b8ca52d596a1000217094e0",
-      "name": "5b8ca52d596a1000217094e0",
-      "aliases": [
-        "Lamberts",
-        "The Lamberts",
-        "Platinum Terminal",
-        "Longhorn",
-        "APT-C-39"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5bbc83af596a10001f4b6954",
-      "name": "5bbc83af596a10001f4b6954",
-      "aliases": [
-        "TA-RedAnt",
-        "Alluring Pisces",
-        "Red Eyes",
-        "Crooked Pisces",
-        "TA444",
-        "TEMP.Reaper",
-        "Opal Sleet",
-        "Reaper",
-        "ATK 4",
-        "APT 37",
-        "Copernicium",
-        "ITG10",
-        "APT 38",
-        "Geumseong121",
-        "Selective Pisces",
-        "TEMP.Hermit",
-        "G0082",
-        "Bluenoroff",
-        "ScarCruft",
-        "Stardust Chollima",
-        "Nickel Gladstone",
-        "Venus 121",
-        "Group 123",
-        "Ricochet Chollima",
-        "CTG-6459",
-        "Sapphire Sleet",
-        "G0067",
-        "T-APT-15",
-        "TAG-71",
-        "Black Alicanto",
-        "Cerium",
-        "Moldy Pisces",
-        "Osmium",
-        "ATK 117",
-        "Ruby Sleet",
-        "InkySquid",
-        "APT38"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5bc543ed596a10001f4b6962",
-      "name": "5bc543ed596a10001f4b6962",
-      "aliases": [
-        "Nomadic Octopus",
-        "EGoManiac",
-        "Golden Falcon",
-        "APT-C-34",
-        "G0133"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5c11d71f596a10000c4afa22",
-      "name": "5c11d71f596a10000c4afa22",
-      "aliases": [
-        "APT-C-32"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5c6b61fc596a100017f5890a",
-      "name": "5c6b61fc596a100017f5890a",
-      "aliases": [
-        "APT-C-36",
-        "TAG-144",
-        "G0099",
-        "BlindEagle",
-        "Blind Eagle",
-        "AguilaCiega",
-        "Blind eagle"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5c998e5c596a10000da7962f",
-      "name": "5c998e5c596a10000da7962f",
-      "aliases": [
-        "APT-C-37",
-        "Pat Bear",
-        "Racquet Bear"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5cedf7be97868c001688d588",
-      "name": "5cedf7be97868c001688d588",
-      "aliases": [
-        "TG-2884",
-        "Cobalt Juno",
-        "APT-Q-66",
-        "Saber Lion",
-        "APT-C-38"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5d43b03897868c001802565e",
-      "name": "5d43b03897868c001802565e",
-      "aliases": [
-        "Lyceum",
-        "Siamesekitten",
-        "G1001",
-        "Hexane"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5d8acdff97868c0016ac86f1",
-      "name": "5d8acdff97868c0016ac86f1",
-      "aliases": [
-        "Hagga"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5dd78cdb97868c0015c047e7",
-      "name": "5dd78cdb97868c0015c047e7",
-      "aliases": [
-        "APT-C-34",
-        "DustSquad",
-        "G0133",
-        "Golden Falcon",
-        "Nomadic Octopus"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
       "id": "5eec56f397868c0016c94bcb",
       "name": "5eec56f397868c0016c94bcb",
       "aliases": [],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5f17a9d297868c0012ea0770",
-      "name": "5f17a9d297868c0012ea0770",
-      "aliases": [
-        "APT-C-42"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5f6c590f97868c0012ea07e8",
-      "name": "5f6c590f97868c0012ea07e8",
-      "aliases": [
-        "G1008",
-        "White Dev 55",
-        "UNC2269",
-        "Mocking Draco",
-        "TAG-140",
-        "SideCopy"
-      ],
       "origin": "Unknown",
       "origin_coords": [
         0,
@@ -1879,194 +105,9 @@
       "active": true
     },
     {
-      "id": "5fe082937579b6000e9e938e",
-      "name": "5fe082937579b6000e9e938e",
-      "aliases": [
-        "APT-C-47"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "5fec4a817579b6001126fb75",
-      "name": "5fec4a817579b6001126fb75",
-      "aliases": [
-        "Storm-0257",
-        "PUSHCHA",
-        "UAC-0051",
-        "Operation Ghostwriter",
-        "UAC-0057",
-        "UNC1151",
-        "DEV-0257",
-        "TA445",
-        "White Lynx"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "60adcd1b7579b6000c4c861d",
-      "name": "60adcd1b7579b6000c4c861d",
-      "aliases": [
-        "blackshadow",
-        "Agonizing Serpens",
-        "AMERICIUM",
-        "BlackShadow",
-        "Pink Sandstorm",
-        "SharpBoys",
-        "Spectral Kitten"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
       "id": "60feddea7579b6000c4a5768",
       "name": "60feddea7579b6000c4a5768",
       "aliases": [],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "616f8f7c7579b6001a553e8c",
-      "name": "616f8f7c7579b6001a553e8c",
-      "aliases": [
-        "APT-C-59"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "618352477579b600126cbd1e",
-      "name": "618352477579b600126cbd1e",
-      "aliases": [
-        "Tengyun Snake",
-        "APT-C-61"
-      ],
-      "origin": "Unknown",
-      "origin_coords": [
-        0,
-        0
-      ],
-      "first_seen": "Unknown",
-      "description": "",
-      "targets": [
-        "Unknown"
-      ],
-      "target_regions": [
-        "Unknown"
-      ],
-      "ttps": [
-        "Unknown"
-      ],
-      "malware": [
-        "Unknown"
-      ],
-      "threat_level": "high",
-      "active": true
-    },
-    {
-      "id": "6412e0ee37e5841dabee1701",
-      "name": "6412e0ee37e5841dabee1701",
-      "aliases": [
-        "WarSunflower",
-        "APT-LY-1006",
-        "Silent Lynx"
-      ],
       "origin": "Unknown",
       "origin_coords": [
         0,
@@ -2116,10 +157,1905 @@
       "active": true
     },
     {
-      "id": "658543eeaaa795185646fdea",
-      "name": "658543eeaaa795185646fdea",
+      "id": "apt-28",
+      "name": "APT 28",
       "aliases": [
-        "Operation RusticWeb"
+        "Snakemackerel",
+        "T-APT-12",
+        "Blue Athena",
+        "ITG05",
+        "Threat Group-4127",
+        "Swallowtail",
+        "Fighting Ursa",
+        "SIG40",
+        "Strontium",
+        "SNAKEMACKEREL",
+        "TA422",
+        "STRONTIUM",
+        "Sofacy Group",
+        "Sofacy",
+        "UAC-0063",
+        "TAG_0700",
+        "Tsar Team",
+        "Pawn Storm",
+        "FROZENLAKE",
+        "Fancy Bear",
+        "Grizzly Steppe",
+        "Sednit",
+        "GruesomeLarch",
+        "GRIZZLY STEPPE",
+        "Group 74",
+        "Grey-Cloud",
+        "TAG-0700",
+        "TAG-110",
+        "ATK 5",
+        "Iron Twilight",
+        "BlueDelta",
+        "Forest Blizzard",
+        "UAC-0028",
+        "TG-4127",
+        "APT-C-20"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "apt-c-08",
+      "name": "APT-C-08",
+      "aliases": [
+        "BITTER",
+        "APT-Q-37",
+        "TA397",
+        "T-APT-17",
+        "G1002"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "apt-c-12",
+      "name": "APT-C-12",
+      "aliases": [],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "apt-c-15",
+      "name": "APT-C-15",
+      "aliases": [
+        "APT-Q-62"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "apt-c-32",
+      "name": "APT-C-32",
+      "aliases": [],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "apt-c-34",
+      "name": "APT-C-34",
+      "aliases": [
+        "DustSquad",
+        "G0133",
+        "Golden Falcon",
+        "Nomadic Octopus"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "apt-c-36",
+      "name": "APT-C-36",
+      "aliases": [
+        "TAG-144",
+        "G0099",
+        "BlindEagle",
+        "Blind Eagle",
+        "AguilaCiega",
+        "Blind eagle"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "apt-c-37",
+      "name": "APT-C-37",
+      "aliases": [
+        "Pat Bear",
+        "Racquet Bear"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "apt-c-42",
+      "name": "APT-C-42",
+      "aliases": [],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "apt-c-47",
+      "name": "APT-C-47",
+      "aliases": [],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "apt-c-59",
+      "name": "APT-C-59",
+      "aliases": [],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "apt-q-54",
+      "name": "APT-Q-54",
+      "aliases": [
+        "TEMP.Zagros",
+        "Boggy Serpens",
+        "MERCURY",
+        "Static Kitten",
+        "Seedworm",
+        "Mercury",
+        "Cobalt Ulster"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "black-banshee",
+      "name": "Black Banshee",
+      "aliases": [
+        "Smoke Screen",
+        "Emerald Sleet",
+        "Velvet Chollima",
+        "Thallium",
+        "Kimsuki",
+        "Sparkling Pisces",
+        "THALLIUM",
+        "Mystery Baby",
+        "Baby Coin"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "cobalt-kitty",
+      "name": "Cobalt Kitty",
+      "aliases": [
+        "APT 32",
+        "SectorF01",
+        "Lotus Bane",
+        "ATK 17",
+        "Canvas Cyclone",
+        "APT-C-00",
+        "Ocean Buffalo",
+        "APT-LY-100",
+        "Pond Loach",
+        "BISMUTH",
+        "Tin Woodlawn",
+        "APT32",
+        "Bismuth",
+        "G0050",
+        "SeaLotus"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "elfin",
+      "name": "Elfin",
+      "aliases": [
+        "Refined Kitten",
+        "Peach Sandstorm",
+        "MAGNALLIUM",
+        "G0064",
+        "HOLMIUM",
+        "Holmium"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "g0041",
+      "name": "G0041",
+      "aliases": [
+        "Strider",
+        "Sauron",
+        "APT-C-16"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "g0068",
+      "name": "G0068",
+      "aliases": [
+        "ATK 33",
+        "Platinum",
+        "TwoForOne"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "g0070",
+      "name": "G0070",
+      "aliases": [],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "g0088",
+      "name": "G0088",
+      "aliases": [
+        "Xenotime",
+        "ATK 91",
+        "TRISIS",
+        "HATMAN",
+        "TEMP.Veles",
+        "XENOTIME"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "g0095",
+      "name": "G0095",
+      "aliases": [
+        "APT-Q-99",
+        "Machete",
+        "APT-C-43"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "g0142",
+      "name": "G0142",
+      "aliases": [],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "g1008",
+      "name": "G1008",
+      "aliases": [
+        "White Dev 55",
+        "UNC2269",
+        "Mocking Draco",
+        "TAG-140",
+        "SideCopy"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "golden-rat",
+      "name": "Golden Rat",
+      "aliases": [
+        "APT-Q-64",
+        "APT-C-27",
+        "ATK 80"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "greenspot",
+      "name": "GreenSpot",
+      "aliases": [
+        "APT-C-01",
+        "APT-Q-20"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "hn2",
+      "name": "HN2",
+      "aliases": [
+        "Rattlesnake",
+        "APT-Q-39",
+        "GroupA21",
+        "Hardcore Nationalist",
+        "SideWinder",
+        "T-APT-04",
+        "BabyElephant",
+        "APT-C-17",
+        "Razor Tiger"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "hagga",
+      "name": "Hagga",
+      "aliases": [],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "koala-team",
+      "name": "Koala Team",
+      "aliases": [
+        "Ghost Blizzard",
+        "Electrum",
+        "DragonFly",
+        "Iron Liberty",
+        "DYMALLOY",
+        "Dragonfly2",
+        "TG-4192",
+        "G0035",
+        "Dragonfly",
+        "Havex",
+        "Group 24",
+        "BROMINE",
+        "ATK 6",
+        "Bromine",
+        "Blue Kraken",
+        "Crouching Yeti",
+        "Berserker Bear",
+        "Black Energy",
+        "CrouchingYeti",
+        "ITG15",
+        "Energetic Bear"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "lamberts",
+      "name": "Lamberts",
+      "aliases": [
+        "The Lamberts",
+        "Platinum Terminal",
+        "Longhorn",
+        "APT-C-39"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "lyceum",
+      "name": "Lyceum",
+      "aliases": [
+        "Siamesekitten",
+        "G1001",
+        "Hexane"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "monsoon",
+      "name": "MONSOON",
+      "aliases": [
+        "ATK 11",
+        "Quilted Tiger",
+        "Chinastrats",
+        "Maha Grass",
+        "Viceroy Tiger",
+        "Operation HangOver",
+        "Monsoon",
+        "Hangover",
+        "G0042",
+        "G0040",
+        "Sarit",
+        "TG-4410",
+        "APT-C-09",
+        "Capricorn Organisation",
+        "Dropping Elephant",
+        "Thirsty Gemini",
+        "Neon",
+        "APT-Q-36",
+        "Zinc Emerson"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "mint-tempest",
+      "name": "Mint Tempest",
+      "aliases": [
+        "Origami Elephant",
+        "SectorE02",
+        "Donot Team",
+        "APT-C-35",
+        "APT-Q-38"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "nomadic-octopus",
+      "name": "Nomadic Octopus",
+      "aliases": [
+        "EGoManiac",
+        "Golden Falcon",
+        "APT-C-34",
+        "G0133"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "operation-ghostsecret",
+      "name": "Operation GhostSecret",
+      "aliases": [
+        "Hastati Group",
+        "NewRomanic Cyber Army Team",
+        "Covellite",
+        "APT-C-26",
+        "Nickel Academy",
+        "CTG-2460",
+        "Group 77",
+        "Unit 121",
+        "NICKEL ACADEMY",
+        "ZINC",
+        "Bluenoroff",
+        "Silent Chollima",
+        "Black Artemis",
+        "Bureau 121",
+        "Diamond Sleet",
+        "Guardians of Peace",
+        "Operation Troy",
+        "Lazarus Group"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "operation-rusticweb",
+      "name": "Operation RusticWeb",
+      "aliases": [],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "parastoo",
+      "name": "Parastoo",
+      "aliases": [
+        "iKittens",
+        "Rocket Kitten",
+        "Group 83",
+        "Newsbeef",
+        "Storm-0270",
+        "TA453",
+        "DEV-0270",
+        "NewsBeef",
+        "Newscaster",
+        "Charming Kitten"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "phosphorus",
+      "name": "Phosphorus",
+      "aliases": [
+        "Mint Sandstorm",
+        "PHOSPHORUS",
+        "Newscaster Team",
+        "APT 35"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "platinum-colony",
+      "name": "Platinum Colony",
+      "aliases": [
+        "G0020",
+        "Five Eyes",
+        "Equation Group",
+        "EQGRP",
+        "Tilded Team",
+        "APT-C-40",
+        "NSA"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "prince-of-persia",
+      "name": "Prince of Persia",
+      "aliases": [
+        "APT-C-07",
+        "Infy group",
+        "Operation Mermaid",
+        "Infy"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "project-raven",
+      "name": "Project Raven",
+      "aliases": [
+        "FruityArmor",
+        "G0038"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "promethium",
+      "name": "Promethium",
+      "aliases": [
+        "StrongPity",
+        "APT-C-41",
+        "G0056",
+        "Magenta Dust"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "purple-pygmy",
+      "name": "Purple Pygmy",
+      "aliases": [
+        "Inexsmar",
+        "TieOnJoe",
+        "Luder",
+        "Fallout Team",
+        "Tapaoux",
+        "Nemim",
+        "Zigzag Hail",
+        "APT-C-06",
+        "Karba",
+        "DUBNIUM"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "quedagh",
+      "name": "Quedagh",
+      "aliases": [
+        "UAC-0113",
+        "TEMP.Noble",
+        "Razing Ursa",
+        "BE2",
+        "TeleBots",
+        "ATK 14",
+        "UAC-0212",
+        "Seashell Blizzard",
+        "CTG-7263",
+        "UAC-0082",
+        "Iron Viking",
+        "Voodoo Bear",
+        "UAC-0133",
+        "Grey Tornado",
+        "IRIDIUM",
+        "Sandworm Team",
+        "Blue Echidna",
+        "UAC-0125",
+        "FROZENBARENTS",
+        "APT44",
+        "APT 44",
+        "UAC-0002"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "renegade-jackal",
+      "name": "Renegade Jackal",
+      "aliases": [
+        "APT-Q-63",
+        "ATK 66",
+        "Mantis",
+        "Niobium",
+        "BigBang",
+        "Pinstripe Lightning",
+        "APT-C-23",
+        "Desert Falcons",
+        "DESERTVARNISH",
+        "TAG-CT1",
+        "Arid Viper",
+        "TAG-63",
+        "Scimitar",
+        "Two-tailed Scorpion",
+        "UNC718",
+        "Big Bang"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "seaduke",
+      "name": "SeaDuke",
+      "aliases": [
+        "Hammer Toss",
+        "Dukes",
+        "Office Monkeys",
+        "Minidionis",
+        "CozyDuke",
+        "Cozer",
+        "Cozy Duke",
+        "OfficeMonkeys",
+        "Cozy Bear",
+        "Nobelium",
+        "The Dukes",
+        "Group 100",
+        "UNC2452",
+        "CozyCar",
+        "CozyBear",
+        "EuroAPT",
+        "NOBELIUM",
+        "Midnight Blizzard"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "shuckworm",
+      "name": "Shuckworm",
+      "aliases": [
+        "Primitive Bear",
+        "APT-C-53",
+        "Aqua Blizzard",
+        "Winterflounder",
+        "Armageddon",
+        "SectorC08",
+        "Hive0051",
+        "Iron Tilden",
+        "UNC530",
+        "ACTINIUM",
+        "Gamaredon Group"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "storm-0257",
+      "name": "Storm-0257",
+      "aliases": [
+        "PUSHCHA",
+        "UAC-0051",
+        "Operation Ghostwriter",
+        "UAC-0057",
+        "UNC1151",
+        "DEV-0257",
+        "TA445",
+        "White Lynx"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "ta-redant",
+      "name": "TA-RedAnt",
+      "aliases": [
+        "Alluring Pisces",
+        "Red Eyes",
+        "Crooked Pisces",
+        "TA444",
+        "TEMP.Reaper",
+        "Opal Sleet",
+        "Reaper",
+        "ATK 4",
+        "APT 37",
+        "Copernicium",
+        "ITG10",
+        "APT 38",
+        "Geumseong121",
+        "Selective Pisces",
+        "TEMP.Hermit",
+        "G0082",
+        "Bluenoroff",
+        "ScarCruft",
+        "Stardust Chollima",
+        "Nickel Gladstone",
+        "Venus 121",
+        "Group 123",
+        "Ricochet Chollima",
+        "CTG-6459",
+        "Sapphire Sleet",
+        "G0067",
+        "T-APT-15",
+        "TAG-71",
+        "Black Alicanto",
+        "Cerium",
+        "Moldy Pisces",
+        "Osmium",
+        "ATK 117",
+        "Ruby Sleet",
+        "InkySquid",
+        "APT38"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "tg-2884",
+      "name": "TG-2884",
+      "aliases": [
+        "Cobalt Juno",
+        "APT-Q-66",
+        "Saber Lion",
+        "APT-C-38"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "tengyun-snake",
+      "name": "Tengyun Snake",
+      "aliases": [
+        "APT-C-61"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "transparent-tribe",
+      "name": "Transparent Tribe",
+      "aliases": [
+        "STEPPY-KAVACH",
+        "Earth Karkaddan",
+        "Mythic Leopard",
+        "APT 36",
+        "Opaque Draco",
+        "Operation C-Major",
+        "TEMP.Lapis",
+        "Storm-0156",
+        "Copper Fieldstone",
+        "APT-C-56",
+        "Barmanou",
+        "SideCopy",
+        "G0134",
+        "Side Copy",
+        "APT36",
+        "Green Havildar",
+        "C-Major"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "turla-team",
+      "name": "Turla Team",
+      "aliases": [
+        "Turla Group",
+        "Hippo Team",
+        "Uroburos",
+        "WRAITH",
+        "KRYPTON",
+        "Skipper Turla",
+        "Snake",
+        "Waterbug",
+        "WhiteBear",
+        "APT-Q-78",
+        "Venomous Bear",
+        "Pfinet",
+        "TAG_0530",
+        "Secret Blizzard",
+        "Group 88"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "venus-121",
+      "name": "Venus 121",
+      "aliases": [
+        "APT37",
+        "Opal Sleet",
+        "Operation Erebus",
+        "TA-RedAnt",
+        "ATK 4",
+        "Hermit",
+        "Cerium",
+        "Red Eyes",
+        "Crooked Pisces",
+        "Osmium",
+        "Ricochet Chollima",
+        "TEMP.Reaper",
+        "sun team",
+        "G0067",
+        "Reaper",
+        "Venus121",
+        "ScarCruft",
+        "ITG10",
+        "APT-S-008",
+        "Operation Daybreak",
+        "Reaper group",
+        "Scarcruft",
+        "Ruby Sleet",
+        "Squid Werewolf",
+        "Geumseong121",
+        "StarCruft",
+        "APT 37",
+        "InkySquid",
+        "Group 123",
+        "Moldy Pisces"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "warsunflower",
+      "name": "WarSunflower",
+      "aliases": [
+        "APT-LY-1006",
+        "Silent Lynx"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "yellow-maero",
+      "name": "Yellow Maero",
+      "aliases": [
+        "PIPEFISH",
+        "Cobalt Gypsy",
+        "Greenbug",
+        "Storm-0861",
+        "ITG13",
+        "Evasive Serpens",
+        "Helix Kitten",
+        "ATK 40",
+        "Twisted Kitten",
+        "IRN2",
+        "Volatile Kitten",
+        "Chrysene",
+        "Shamoon 2",
+        "EUROPIUM",
+        "Earth Simnavaz",
+        "Hazel Sandstorm",
+        "Scarred Manticore",
+        "TA452",
+        "DEV-0861",
+        "UNC1860",
+        "Crambus",
+        "APT 34"
+      ],
+      "origin": "Unknown",
+      "origin_coords": [
+        0,
+        0
+      ],
+      "first_seen": "Unknown",
+      "description": "",
+      "targets": [
+        "Unknown"
+      ],
+      "target_regions": [
+        "Unknown"
+      ],
+      "ttps": [
+        "Unknown"
+      ],
+      "malware": [
+        "Unknown"
+      ],
+      "threat_level": "high",
+      "active": true
+    },
+    {
+      "id": "blackshadow",
+      "name": "blackshadow",
+      "aliases": [
+        "Agonizing Serpens",
+        "AMERICIUM",
+        "BlackShadow",
+        "Pink Sandstorm",
+        "SharpBoys",
+        "Spectral Kitten"
       ],
       "origin": "Unknown",
       "origin_coords": [
