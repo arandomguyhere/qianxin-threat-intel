@@ -21,9 +21,16 @@ APT group data is scraped from QiAnxin's live APT map and updated automatically.
 
 ### How it works
 
-1. **`scripts/scrape.py`** - Playwright scraper loads the QiAnxin APT map in a headless browser, intercepts all JSON API responses, and dumps them to `qianxin_apt_dump/`
-2. **`scripts/transform.py`** - Scans the raw dumps, detects APT group records by structure, normalizes fields (including Chinese-to-English country names), and writes `docs/data/apt-groups.json`
-3. **GitHub Action** (`.github/workflows/update-apt-data.yml`) - Runs the pipeline weekly (Monday 06:00 UTC) and commits any changes automatically. Can also be triggered manually via `workflow_dispatch`.
+1. **`scripts/scrape.py`** - Playwright scraper loads the QiAnxin APT map in a headless browser, intercepts all JSON API responses (notably `/alpha-api/v2/apt-dossier/actor/all` and `/alpha-api/v2/apt-dossier/map/v2`), and dumps them to `qianxin_apt_dump/`
+2. **`scripts/transform.py`** - Targets the `apt-dossier` endpoints first, falls back to scanning all dumps. Unwraps the `{status, message, data}` envelope, normalizes fields (Chinese-to-English country names, nested objects, etc.), and writes `docs/data/apt-groups.json`. If no groups are detected, prints full debug output showing each file's structure and keeps existing data unchanged.
+3. **GitHub Action** (`.github/workflows/update-apt-data.yml`) - Runs the pipeline weekly (Monday 06:00 UTC) and commits any changes automatically. Can also be triggered manually via `workflow_dispatch`. The run summary shows update status, group count, and last-updated date. Raw dumps are uploaded as artifacts (30-day retention).
+
+### Monitoring updates
+
+- **On the site**: header shows "Last Updated" date from the data
+- **GitHub Actions tab**: each run shows a summary table with status, group count, and dates
+- **Git log**: auto-commits appear as `chore: update APT data from QiAnxin (YYYY-MM-DD)`
+- **Artifacts**: raw API dumps downloadable from each Action run for inspection
 
 ### Run manually
 
