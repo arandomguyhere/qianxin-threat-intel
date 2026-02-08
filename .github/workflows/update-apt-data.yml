@@ -1,0 +1,54 @@
+name: Update APT Data
+
+on:
+  schedule:
+    # Run weekly on Monday at 06:00 UTC
+    - cron: '0 6 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  scrape-and-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          playwright install chromium
+          playwright install-deps chromium
+
+      - name: Scrape QiAnxin APT data
+        run: python scripts/scrape.py
+
+      - name: Upload raw dump as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: qianxin-apt-dump
+          path: qianxin_apt_dump/
+          retention-days: 30
+
+      - name: Transform scraped data
+        run: python scripts/transform.py
+
+      - name: Check for changes
+        id: diff
+        run: |
+          git diff --quiet docs/data/apt-groups.json && echo "changed=false" >> "$GITHUB_OUTPUT" || echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push updated data
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/apt-groups.json
+          git commit -m "chore: update APT data from QiAnxin ($(date -u +%Y-%m-%d))"
+          git push

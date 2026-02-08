@@ -15,9 +15,27 @@ Interactive APT threat group map visualization based on [QiAnxin Threat Intellig
 - **Country filters** - one-click filtering by origin nation
 - **Detail panel** - click any group for full intel: description, aliases, TTPs, target sectors, malware
 
-## Data
+## Data Pipeline
 
-APT group data is compiled from open-source threat intelligence reports and QiAnxin research. Each group includes:
+APT group data is scraped from QiAnxin's live APT map and updated automatically.
+
+### How it works
+
+1. **`scripts/scrape.py`** - Playwright scraper loads the QiAnxin APT map in a headless browser, intercepts all JSON API responses, and dumps them to `qianxin_apt_dump/`
+2. **`scripts/transform.py`** - Scans the raw dumps, detects APT group records by structure, normalizes fields (including Chinese-to-English country names), and writes `docs/data/apt-groups.json`
+3. **GitHub Action** (`.github/workflows/update-apt-data.yml`) - Runs the pipeline weekly (Monday 06:00 UTC) and commits any changes automatically. Can also be triggered manually via `workflow_dispatch`.
+
+### Run manually
+
+```bash
+pip install -r requirements.txt
+playwright install chromium
+
+python scripts/scrape.py      # Scrape QiAnxin API responses
+python scripts/transform.py   # Transform into apt-groups.json
+```
+
+### Data fields per group
 
 - Origin country and coordinates
 - Known aliases
@@ -29,4 +47,4 @@ APT group data is compiled from open-source threat intelligence reports and QiAn
 
 ## Setup
 
-Enable GitHub Pages from repo Settings > Pages > source branch > `/docs` folder. No build step required — it's all static HTML/CSS/JS.
+Enable GitHub Pages from repo Settings > Pages > source branch > `/docs` folder. No build step required -- the site is all static HTML/CSS/JS.
