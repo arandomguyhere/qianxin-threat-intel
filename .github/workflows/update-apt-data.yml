@@ -52,3 +52,17 @@ jobs:
           git add docs/data/apt-groups.json
           git commit -m "chore: update APT data from QiAnxin ($(date -u +%Y-%m-%d))"
           git push
+
+      - name: Summary
+        run: |
+          GROUPS=$(python -c "import json; d=json.load(open('docs/data/apt-groups.json')); print(d['metadata']['total_groups'])")
+          UPDATED=$(python -c "import json; d=json.load(open('docs/data/apt-groups.json')); print(d['metadata']['last_updated'])")
+          CHANGED=${{ steps.diff.outputs.changed }}
+          echo "## APT Data Update" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| | |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|---|---|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **Status** | $( [ \"$CHANGED\" = 'true' ] && echo '✅ Updated and committed' || echo '⏸️ No changes detected') |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **Groups** | $GROUPS |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **Data date** | $UPDATED |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **Run date** | $(date -u +%Y-%m-%d) |" >> "$GITHUB_STEP_SUMMARY"
