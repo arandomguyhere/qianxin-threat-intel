@@ -15,6 +15,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
 
       - uses: actions/setup-python@v5
         with:
@@ -51,7 +53,9 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/data/apt-groups.json
           git commit -m "chore: update APT data from QiAnxin ($(date -u +%Y-%m-%d))"
-          git push
+          echo "Pushing to branch: ${{ github.ref_name }}"
+          git pull --rebase origin ${{ github.ref_name }}
+          git push origin HEAD:${{ github.ref_name }}
 
       - name: Summary
         if: always()
