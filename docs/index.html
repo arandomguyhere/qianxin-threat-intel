@@ -33,17 +33,75 @@
     <div class="header-stats" id="stats"></div>
   </header>
 
+  <!-- Tab Navigation -->
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="map">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      Map
+    </button>
+    <button class="tab-btn" data-tab="stats">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
+      Statistics
+    </button>
+    <button class="tab-btn" data-tab="timeline">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><polyline points="8 6 3 12 8 18"/></svg>
+      Timeline
+    </button>
+    <button class="tab-btn" data-tab="news">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><line x1="10" y1="6" x2="18" y2="6"/><line x1="10" y1="10" x2="18" y2="10"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+      News Feed
+    </button>
+  </nav>
+
   <!-- Main Layout -->
   <div class="main-container">
 
-    <!-- Map -->
-    <section class="map-section">
+    <!-- Map View -->
+    <section class="map-section tab-content active" id="tab-map">
       <div class="map-container" id="world-map"></div>
       <div class="map-legend" id="map-legend"></div>
       <div class="map-controls">
         <button class="map-ctrl-btn" id="zoom-in" title="Zoom in">+</button>
         <button class="map-ctrl-btn" id="zoom-out" title="Zoom out">&minus;</button>
         <button class="map-ctrl-btn" id="zoom-reset" title="Reset view">&#8634;</button>
+      </div>
+    </section>
+
+    <!-- Stats View -->
+    <section class="stats-section tab-content" id="tab-stats">
+      <div class="stats-dashboard">
+        <div class="stats-row">
+          <div class="chart-card">
+            <div class="chart-title">Groups by Origin Country</div>
+            <div class="chart-container" id="chart-origins"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">Threat Level Distribution</div>
+            <div class="chart-container" id="chart-threats"></div>
+          </div>
+        </div>
+        <div class="stats-row">
+          <div class="chart-card">
+            <div class="chart-title">Top Target Sectors</div>
+            <div class="chart-container" id="chart-sectors"></div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-title">Top Malware Families</div>
+            <div class="chart-container" id="chart-malware"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline View -->
+    <section class="timeline-section tab-content" id="tab-timeline">
+      <div class="timeline-container" id="timeline-container"></div>
+    </section>
+
+    <!-- News View -->
+    <section class="news-section tab-content" id="tab-news">
+      <div class="news-container" id="news-container">
+        <div class="loading"><div class="loading-spinner"></div> Loading threat intelligence news...</div>
       </div>
     </section>
 
