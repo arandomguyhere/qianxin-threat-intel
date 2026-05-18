@@ -8,7 +8,8 @@
         "The Lamberts",
         "Platinum Terminal",
         "Longhorn",
-        "APT-C-39"
+        "APT-C-39",
+        "APT-Q-92"
       ],
       "origin": "United States",
       "origin_coords": [
@@ -82,7 +83,8 @@
         "STRONTIUM",
         "FROZENLAKE",
         "APT 28",
-        "TAG-0700"
+        "TAG-0700",
+        "APT-Q-76"
       ],
       "origin": "Russia",
       "origin_coords": [
@@ -140,7 +142,8 @@
         "CozyCar",
         "NOBELIUM",
         "Cozer",
-        "EuroAPT"
+        "EuroAPT",
+        "APT-Q-77"
       ],
       "origin": "Russia",
       "origin_coords": [
@@ -274,7 +277,8 @@
         "Blue Kraken",
         "ATK 6",
         "奇幻熊",
-        "Berserker Bear"
+        "Berserker Bear",
+        "APT-Q-80"
       ],
       "origin": "Russia",
       "origin_coords": [
@@ -330,7 +334,8 @@
         "Bureau 121",
         "Silent Chollima",
         "CTG-2460",
-        "Bluenoroff"
+        "Bluenoroff",
+        "APT-Q-1"
       ],
       "origin": "North Korea",
       "origin_coords": [
@@ -376,7 +381,8 @@
         "Platinum",
         "白金",
         "潜行者",
-        "TwoForOne"
+        "TwoForOne",
+        "APT-Q-32"
       ],
       "origin": "China",
       "origin_coords": [
@@ -435,7 +441,8 @@
         "UAC-0113",
         "Grey Tornado",
         "Sandworm Team",
-        "Voodoo Bear"
+        "Voodoo Bear",
+        "APT-Q-79"
       ],
       "origin": "Russia",
       "origin_coords": [
@@ -611,7 +618,8 @@
         "Five Eyes",
         "NSA",
         "Equation",
-        "Tilded Team"
+        "Tilded Team",
+        "APT-Q-91"
       ],
       "origin": "United States",
       "origin_coords": [
@@ -657,7 +665,8 @@
         "G0041",
         "Strider",
         "Sauron",
-        "APT-C-16"
+        "APT-C-16",
+        "APT-Q-93"
       ],
       "origin": "United States",
       "origin_coords": [
@@ -702,7 +711,8 @@
         "HOLMIUM",
         "Curious Serpens",
         "Elfin",
-        "Refined Kitten"
+        "Refined Kitten",
+        "APT-Q-52"
       ],
       "origin": "Iran",
       "origin_coords": [
@@ -929,7 +939,8 @@
         "TA453",
         "DEV-0270",
         "NewsBeef",
-        "Newscaster"
+        "Newscaster",
+        "APT-Q-55"
       ],
       "origin": "Iran",
       "origin_coords": [
@@ -1020,7 +1031,8 @@
         "Zigzag Hail",
         "APT-C-06",
         "Karba",
-        "DUBNIUM"
+        "DUBNIUM",
+        "APT-Q-10"
       ],
       "origin": "South Korea",
       "origin_coords": [
@@ -1110,7 +1122,8 @@
         "Iron Tilden",
         "Gamaredon",
         "APT-C-53",
-        "Primitive Bear"
+        "Primitive Bear",
+        "APT-Q-82"
       ],
       "origin": "Russia",
       "origin_coords": [
@@ -1224,7 +1237,8 @@
         "Hermit",
         "Red Eyes",
         "Opal Sleet",
-        "ITG10"
+        "ITG10",
+        "APT-Q-3"
       ],
       "origin": "North Korea",
       "origin_coords": [
@@ -1345,7 +1359,8 @@
         "Mystery Baby",
         "Smoke Screen",
         "THALLIUM",
-        "Velvet Chollima"
+        "Velvet Chollima",
+        "APT-Q-2"
       ],
       "origin": "North Korea",
       "origin_coords": [
@@ -1482,7 +1497,8 @@
         "ITG13",
         "Twisted Kitten",
         "Shamoon 2",
-        "Cobalt Gypsy"
+        "Cobalt Gypsy",
+        "APT-Q-57"
       ],
       "origin": "Iran",
       "origin_coords": [
@@ -1948,7 +1964,8 @@
       "name": "旺刺",
       "aliases": [
         "APT-C-47",
-        "ClickOnce"
+        "ClickOnce",
+        "APT-Q-14"
       ],
       "origin": "Unknown",
       "origin_coords": [
@@ -2035,7 +2052,8 @@
         "Cobalt Kitty",
         "Pond Loach",
         "SectorF01",
-        "G0050"
+        "G0050",
+        "APT-Q-31"
       ],
       "origin": "Vietnam",
       "origin_coords": [
@@ -2266,7 +2284,8 @@
       "aliases": [
         "APT-C-12",
         "核危机",
-        "BlueMushroom"
+        "BlueMushroom",
+        "APT-Q-21"
       ],
       "origin": "South Korea",
       "origin_coords": [
@@ -2345,7 +2364,8 @@
       "name": "魔罗桫",
       "aliases": [
         "G0142",
-        "Confucius"
+        "Confucius",
+        "APT-Q-40"
       ],
       "origin": "India",
       "origin_coords": [
@@ -2604,7 +2624,8 @@
       "aliases": [
         "艾叶豹",
         "雪豹",
-        "Snow leopard"
+        "Snow leopard",
+        "APT-Q-70"
       ],
       "origin": "Pakistan",
       "origin_coords": [
@@ -2867,7 +2888,7 @@
   "metadata": {
     "source": "QiAnxin Threat Intelligence Center - APT Encyclopedia",
     "source_url": "https://ti.qianxin.com/apt/apt?type=map",
-    "last_updated": "2026-05-11",
+    "last_updated": "2026-05-18",
     "total_groups": 61,
     "description": "Auto-scraped APT group data from QiAnxin Threat Intelligence Center."
   }
